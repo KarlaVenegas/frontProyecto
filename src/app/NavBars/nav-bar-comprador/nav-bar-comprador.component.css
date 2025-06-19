@@ -1,0 +1,39 @@
+.custom-navbar{
+  background-color: #BF5E54;
+  height: 5vw;
+}
+
+.nav-link{
+  position: relative;
+  font-weight: normal;
+  transition: all 0.3s ease;
+  color: #eae0dd;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 6px; /* 👈 aquí controlas la distancia del subrayado */
+  width: 0%;
+  height: 2px;
+  background-color: #eae0dd;
+  transition: width 0.3s ease;
+}
+/* Hover: se "estira" el subrayado */
+.nav-link:hover::after {
+  width: 100%;
+}
+.nav-link.active::after {
+  width: 100%;
+}
+.nav-link.active{
+  font-weight: 500;
+  color: #eae0dd;
+}
+.nav-item {
+  margin: 1vw;
+}
+
+.navbar-nav{
+  margin-right: 2vw;
+}
