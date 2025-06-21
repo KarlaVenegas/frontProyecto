@@ -50,7 +50,7 @@
 .dropdown-menu {
   background-color: #eae0dd;
   border: none;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* opcional, para dar profundidad */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 .dropdown-item{
   color: #BF5E54;
@@ -81,7 +81,6 @@
 }
 
 /*Para que se ajuste al tamaño de las pantallas*/
-
 @media (max-width: 575.98px) {
   .logoTexto {
     font-size: 1.5rem;
@@ -122,7 +121,6 @@
   }
 }
 
-/* YAYAYAYA */
 @media (min-width: 992px) {
   .logoTexto {
     font-size: 3rem;
