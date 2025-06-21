@@ -1,0 +1,27 @@
+/*Letras*/
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+
+h1{
+  font-family: 'Outfit',sans-serif;
+  font-size: 35px;
+  text-align: center;
+  margin-top: 1.5vw;
+}
+
+h2{
+  margin-top: 1vw;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+p{
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+.degradado{
+  float: right;
+  width: 900px;
+}
