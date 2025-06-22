@@ -1,0 +1,32 @@
+h1{
+  font-family: 'Outfit',sans-serif;
+  font-size: 35px;
+  text-align: center;
+  margin-top: 1.5vw;
+}
+
+h2{
+  margin-top: 2vw;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 1.5vw;
+}
+
+p{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 25px;
+}
+
+.codigo{
+  text-align: center;
+}
+
+.imgQR{
+  width: 300px;
+}
+
+.puntos{
+  margin-top: 1vw;
+  font-size: 20px;
+}
