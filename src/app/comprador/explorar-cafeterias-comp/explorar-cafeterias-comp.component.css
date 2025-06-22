@@ -13,6 +13,7 @@ h2{
   font-family: 'Montserrat', sans-serif;
   font-size: 30px;
   font-weight: 500;
+  margin-bottom: 3vw;
 }
 
 p{
@@ -21,7 +22,41 @@ p{
   font-weight: 400;
 }
 
-.degradado{
-  float: right;
-  width: 900px;
+h6{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 650;
 }
+
+span{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+
+.container{
+  margin-bottom: 5vw;
+}
+
+.imgCafeteria{
+  height: 100px;
+}
+
+
+/*Tarjetas de cafeterias*/
+.tarjetas{
+  border-width: 3px;
+  border-color: #BF5E54;
+  background-color: transparent;
+}
+
+.hover-scale {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.hover-scale:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
