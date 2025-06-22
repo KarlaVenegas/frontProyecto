@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #121212;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.cuenta-container {
+  background-color: #f7efed;
+  padding: 40px;
+  max-width: 700px;
+  margin: 40px auto;
+  border-radius: 12px;
+}
+
+h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 35px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.menu-card {
+  padding: 10px;
+  background-color: transparent;
+  text-align: left;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.btn-anadir {
+  background-color: #E6BC50;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-anadir:hover {
+  background-color: #B48B37;
+}
+
+.menu-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.menu-card {
+  font-family: 'Montserrat', sans-serif;
+  padding: 10px;
+  background-color: transparent;
+  transition: transform 0.2s ease;
+  text-align: left;
+}
+
+.cuenta-container {
+  background-color: #f7efed;
+  padding: 40px;
+  max-width: 500px;
+  margin: 40px auto;
+  border-radius: 12px;
+  font-family: Arial, sans-serif;
+}
+
+/* ----------- INPUT FLOAT LABEL ----------- */
+
+.container {
+  width: 100%;
+  max-width: 700px;
+  height: 2.5em;
+  position: relative;
+  margin-bottom: 30px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.form__input {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  border: 2px solid #000000;
+  border-radius: 0.5em;
+  outline: none;
+  color: #000000;
+  padding: 0 1em;
+  font-size: 1rem;
+}
+
+label {
+  position: absolute;
+  left: 1em;
+  top: 0.75em;
+  background-color: #f7efed;
+  color: #000000;
+  padding: 0 0.25em;
+  transition: top 0.3s ease, font-size 0.3s ease;
+  pointer-events: none;
+}
+
+/* Mover el label hacia arriba cuando hay texto o foco */
+.form__input:focus ~ label,
+.form__input:not(:placeholder-shown) ~ label {
+  top: -0.6em;
+  font-size: 0.75rem;
+}
+
+/* Hover y focus visual */
+.form__input:hover {
+  border: 2px solid #000000;
+}
+
+.form__input:focus {
+  border: 2px solid #000000;
+}
+
+/* Estilo de error */
+.error-msg {
+  color: red;
+  font-size: 0.9em;
+  margin-top: -1em;
+  padding-left: 0.5em;
+  position: relative;  /* activa el desplazamiento visual */
+  top: -8px;
+}
+
+

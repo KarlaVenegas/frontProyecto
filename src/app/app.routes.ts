@@ -11,6 +11,7 @@ import { TuCarritoCompComponent } from './comprador/tu-carrito-comp/tu-carrito-c
 import { MenuComComponent } from './comprador/menu-com/menu-com.component';
 //Cafeteria flujo
 import { NavBarCafeteriasComponent } from './NavBars/nav-bar-cafeterias/nav-bar-cafeterias.component';
+import { ActualizarCuentaComponent } from './comprador/actualizar-cuenta/actualizar-cuenta.component';
 
 export const routes: Routes = [
   {
@@ -30,7 +31,8 @@ export const routes: Routes = [
       { path: 'recompensas', component: RecompensasCompComponent },
       { path: 'miCuenta', component: MiCuentaCompComponent },
       { path: 'tuCarrito', component: TuCarritoCompComponent },
-      { path: 'menuCafe', component: MenuComComponent }
+      { path: 'menuCafe', component: MenuComComponent },
+      { path: 'actualizarCuenta', component: ActualizarCuentaComponent }
     ]
   },
   {

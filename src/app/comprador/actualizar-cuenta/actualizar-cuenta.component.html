@@ -1,0 +1,35 @@
+<form #form="ngForm" class="cuenta-container">
+
+  <h1 class="menu-title">Actualizar datos de la cuenta</h1>
+
+  <div class="menu-card"><strong>Nombre:</strong> Carlos Andres</div>
+  <div class="menu-card"><strong>Apellido Paterno:</strong> Hernandez</div>
+  <div class="menu-card"><strong>Apellido Materno:</strong> Iriarte</div>
+
+
+  <div class="container">
+    <input type="email" id="correo" name= "correo"autocomplete="off" required placeholder=" " class="form__input"
+      [(ngModel)]="nuevoCorreo" #correo="ngModel" />
+    <label for="correo">Correo electónico</label>
+
+  </div>
+  <div class="error-msg" *ngIf="correo.invalid && correo.invalid">Campo obligatorio</div>
+
+  <div class="container">
+    <input type="password" id="contrasena" name="contrasenaModel" autocomplete="off" required placeholder=" " class="form__input"
+      [(ngModel)]="nuevaClave" #contrasenaModel="ngModel" />
+    <label for="contrasena">Contraseña</label>
+
+  </div>
+  <div class="error-msg" *ngIf="contrasenaModel.invalid && contrasenaModel.invalid">Campo obligatorio</div>
+
+
+
+
+  <!-- Botones -->
+  <div class="button-group" style="margin-top: 20px;">
+    <button class="btn-anadir" (click)="guardar()" [disabled]="form.invalid">Guardar</button>
+    <button class="btn-anadir" (click)="irA()">Cancelar</button>
+  </div>
+
+</form>
