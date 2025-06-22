@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-actualizar-cuenta',
@@ -12,7 +13,11 @@ import { Router } from '@angular/router';
 })
 export class ActualizarCuentaComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private location: Location) {}
+
+  goBack(): void {
+      this.location.back();
+  }
 
 
   nuevoCorreo: string = '';

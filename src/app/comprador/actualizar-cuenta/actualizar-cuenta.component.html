@@ -1,10 +1,17 @@
-<form #form="ngForm" class="cuenta-container">
+<div class="menu-header">
+  <button (click)="goBack()" class="back-button" aria-label="Volver">
+    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-arrow-90deg-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708z"/>
+    </svg>
+  </button>
+  <h1 class="menu-title">Actualizar Datos</h1>
+</div>
 
-  <h1 class="menu-title">Actualizar datos de la cuenta</h1>
+<form #form="ngForm" class="cuenta-container">
 
   <div class="menu-card"><strong>Nombre:</strong> Carlos Andres</div>
   <div class="menu-card"><strong>Apellido Paterno:</strong> Hernandez</div>
-  <div class="menu-card"><strong>Apellido Materno:</strong> Iriarte</div>
+  <div class="menu-card space"><strong>Apellido Materno:</strong> Iriarte</div>
 
 
   <div class="container">
@@ -28,8 +35,8 @@
 
   <!-- Botones -->
   <div class="button-group" style="margin-top: 20px;">
+    <button class="btn-eliminar" (click)="irA()">Cancelar</button>
     <button class="btn-anadir" (click)="guardar()" [disabled]="form.invalid">Guardar</button>
-    <button class="btn-anadir" (click)="irA()">Cancelar</button>
   </div>
 
 </form>

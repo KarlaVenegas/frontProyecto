@@ -12,5 +12,5 @@ export class MenuComComponent {
   constructor (private location: Location){}
   goBack(): void {
       this.location.back();
-    }
+  }
 }

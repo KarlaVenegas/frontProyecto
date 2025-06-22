@@ -1,3 +1,35 @@
+/*Letras*/
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+
+h1 {
+  font-family: 'Outfit',sans-serif;
+  font-size: 35px;
+  text-align: center;
+  margin-top: 1.5vw;
+}
+
+.menu-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.back-button {
+  position: absolute;
+  left: 120px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.back-button:hover svg {
+  color: #BF5E54;
+  transform: scale(1.05);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -21,13 +53,6 @@ body {
   border-radius: 12px;
 }
 
-h1 {
-  font-family: 'Outfit', sans-serif;
-  font-size: 35px;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
 .menu-card {
   padding: 10px;
   background-color: transparent;
@@ -48,17 +73,26 @@ h1 {
   padding: 5px 30px;
   font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #000000;
 }
 
 .btn-anadir:hover {
   background-color: #B48B37;
 }
 
-.menu-title {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 22px;
+.btn-eliminar {
+  background-color: #B48B37;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 30px;
   font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-eliminar:hover {
+  background-color: #E6BC50;
 }
 
 .menu-card {
@@ -76,6 +110,10 @@ h1 {
   margin: 40px auto;
   border-radius: 12px;
   font-family: Arial, sans-serif;
+}
+
+.space{
+  margin-bottom: 0.5vw;
 }
 
 /* ----------- INPUT FLOAT LABEL ----------- */
@@ -131,7 +169,7 @@ label {
 
 /* Estilo de error */
 .error-msg {
-  color: red;
+  color: #BF5E54;
   font-size: 0.9em;
   margin-top: -1em;
   padding-left: 0.5em;
