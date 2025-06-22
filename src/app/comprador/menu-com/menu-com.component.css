@@ -1,0 +1,80 @@
+/*Letras*/
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+
+h1{
+  font-family: 'Outfit',sans-serif;
+  font-size: 35px;
+  text-align: center;
+  margin-top: 1.5vw;
+}
+
+.menu-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.back-button {
+  position: absolute;
+  left: 120px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.back-button:hover svg {
+  color: #BF5E54;
+  transform: scale(1.05);
+}
+/*Tarjetas de comida*/
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 50px;
+  padding: 20px;
+}
+
+.menu-card {
+ font-family: 'Montserrat', sans-serif;
+  border: 2px solid #BF5E54;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  background-color: transparent;
+  transition: transform 0.2s ease;
+}
+
+.menu-card p {
+  margin: 4px 0;
+}
+
+
+.menu-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.menu-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 5px;
+}
+
+.btn-anadir {
+  background-color: #E6BC50;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-anadir:hover {
+  background-color: #B48B37;
+}
+

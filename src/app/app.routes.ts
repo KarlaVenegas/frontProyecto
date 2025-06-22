@@ -8,6 +8,7 @@ import { PedidosCompComponent } from './comprador/pedidos-comp/pedidos-comp.comp
 import { RecompensasCompComponent } from './comprador/recompensas-comp/recompensas-comp.component';
 import { MiCuentaCompComponent } from './comprador/mi-cuenta-comp/mi-cuenta-comp.component';
 import { TuCarritoCompComponent } from './comprador/tu-carrito-comp/tu-carrito-comp.component';
+import { MenuComComponent } from './comprador/menu-com/menu-com.component';
 //Cafeteria flujo
 import { NavBarCafeteriasComponent } from './NavBars/nav-bar-cafeterias/nav-bar-cafeterias.component';
 
@@ -29,7 +30,7 @@ export const routes: Routes = [
       { path: 'recompensas', component: RecompensasCompComponent },
       { path: 'miCuenta', component: MiCuentaCompComponent },
       { path: 'tuCarrito', component: TuCarritoCompComponent },
-
+      { path: 'menuCafe', component: MenuComComponent }
     ]
   },
   {
