@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, NgModule} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,3 +11,11 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent {
   title = 'Página Principal';
 }
+
+
+@NgModule({
+  imports: [
+    ReactiveFormsModule
+  ],
+})
+export class AppModule { }

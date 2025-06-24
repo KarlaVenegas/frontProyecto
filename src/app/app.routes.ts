@@ -1,6 +1,11 @@
 import { Routes } from '@angular/router';
 //Flujo principal
 import { NavBarPrincipalComponent } from './NavBars/nav-bar-principal/nav-bar-principal.component';
+import {LoginComponent} from './principal/login/login.component';
+import {CrearCuentaComponent} from './principal/crear-cuenta/crear-cuenta.component';
+import {CambiarContrasenaComponent} from './principal/cambiar-contrasena/cambiar-contrasena.component';
+
+
 //Comprador flujo
 import { NavBarCompradorComponent } from './NavBars/nav-bar-comprador/nav-bar-comprador.component';
 import { ExplorarCafeteriasCompComponent } from './comprador/explorar-cafeterias-comp/explorar-cafeterias-comp.component';
@@ -15,10 +20,12 @@ import { ActualizarCuentaComponent } from './comprador/actualizar-cuenta/actuali
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'principal',
     component : NavBarPrincipalComponent,
     children:[
-      //aqui ponen las rutas del flujo principal
+      { path: 'login', component: LoginComponent },
+      { path: 'crearCuenta', component: CrearCuentaComponent },
+      {path: 'cambiarContrasena', component: CambiarContrasenaComponent}
     ]
   },
   {
