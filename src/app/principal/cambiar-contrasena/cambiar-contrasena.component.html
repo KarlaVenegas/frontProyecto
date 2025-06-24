@@ -1,0 +1,58 @@
+<main>
+          <section class="login-container">
+            <h1>Recuperar Contraseña</h1>
+
+            <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                placeholder="Correo electrónico"
+                required
+                [ngClass]="{'input-error': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}"
+              />
+              <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">
+                <small *ngIf="loginForm.get('email')?.errors?.['required']">El correo es obligatorio.</small>
+                <small *ngIf="loginForm.get('email')?.errors?.['email']">Correo electrónico no válido.</small>
+              </div>
+              <br><br>
+              <input
+                id="password"
+                type="password"
+                formControlName="password"
+                placeholder="Nueva Contraseña"
+                required
+                [ngClass]="{'input-error': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}"/>
+
+              <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+                <small *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es obligatoria.</small>
+                <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Mínimo 8 caracteres.</small>
+                <small *ngIf="loginForm.get('password')?.errors?.['pattern']">
+                  Debe contener mayúscula, minúscula, número y símbolo especial.
+                </small>
+              </div>
+              <br><br>
+              <input
+                id="confirmPassword"
+                type="password"
+                formControlName="confirmPassword"
+                placeholder="Confirmar Contraseña"
+                required
+                [ngClass]="{
+                  'input-error': (loginForm.hasError('passwordsMismatch') && loginForm.get('confirmPassword')?.touched) ||
+                                (loginForm.get('confirmPassword')?.invalid && loginForm.get('confirmPassword')?.touched)
+                }"
+              />
+              <div *ngIf="loginForm.hasError('passwordsMismatch') && loginForm.get('confirmPassword')?.touched" class="error-message">
+                <small>Las contraseñas no coinciden.</small>
+              </div>
+              <div *ngIf="loginForm.get('confirmPassword')?.invalid && loginForm.get('confirmPassword')?.touched && !loginForm.hasError('passwordsMismatch')" class="error-message">
+                <small>Confirmar contraseña es obligatorio.</small>
+              </div>
+              <div class="login-links">
+                <button type="submit" [disabled]="loginForm.invalid">Enviar</button>
+                <button type="button">Cancelar</button>
+              </div>
+            </form>
+          </section>
+        </main>
