@@ -8,10 +8,17 @@ h1{
   margin-top: 1.5vw;
 }
 
+.container {
+  background-color: #f7efed;
+  padding: 40px;
+  max-width: 600px;
+  margin: 40px auto;
+  border-radius: 12px;
+}
+
 h2{
-  margin-top: 2vw;
   font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   margin-bottom: 1.5vw;
 }

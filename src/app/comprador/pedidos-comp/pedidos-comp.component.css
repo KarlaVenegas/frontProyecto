@@ -1,0 +1,112 @@
+/*Letras*/
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+
+h1{
+  font-family: 'Outfit',sans-serif;
+  font-size: 35px;
+  text-align: center;
+  margin-top: 1.5vw;
+}
+/* Div del select */
+::ng-deep .custom-ng-select {
+  border: 2px solid #BF5E54 !important;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #000;
+  width: 180px;
+}
+
+::ng-deep .custom-ng-select .ng-select-container {
+  background-color: #eae0dd !important;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: none !important;
+}
+
+/* Flecha del select */
+::ng-deep .custom-ng-select .ng-select-container .ng-arrow-wrapper .ng-arrow {
+  border-color: black transparent transparent transparent !important;
+}
+
+/* Panel del dropdown */
+::ng-deep .custom-ng-select .ng-dropdown-panel {
+  border: 2px solid #BF5E54;
+  background-color: #eae0dd !important;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* sombra sutil */
+  overflow: hidden;
+}
+
+/* Opciones dentro del panel */
+::ng-deep .custom-ng-select .ng-dropdown-panel .ng-option {
+  padding: 8px 12px;
+  font-size: 15px;
+  border-bottom: 1px solid #e0d0cd;
+  background-color: #e0d0cd;
+}
+
+::ng-deep .custom-ng-select .ng-option:hover:not(.ng-option-selected) {
+  background-color: #bf5f545a !important;
+  color: #000000 !important;
+}
+
+::ng-deep .custom-ng-select .ng-option-selected {
+
+  color: #000000c1 !important;
+}
+/*Forza a que no se  ponga nada en blanco*/
+::ng-deep .custom-ng-select .ng-option {
+  background-color: #eae0dd !important;
+}
+
+/*Acordeon de pedidos*/
+.cafe{
+  margin-right: 10px;
+}
+.accordion-item{
+  margin-bottom: 1.5vw;
+  border-radius: 5px 5px;
+}
+
+.accordion-button{
+  background-color: rgba(191, 94, 84, 0.55);
+  color: #000;
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.25rem rgba(191, 94, 84, 0.5);
+  border-color: #BF5E54;
+  outline: none;
+}
+
+.accordion-collapse{
+  background-color: rgba(191, 94, 84, 0.31) !important;
+  border-radius: 0 0 5px 5px;
+}
+
+span{
+  font-family: 'Montserrat', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+}
+
+p{
+  font-family: 'Montserrat', sans-serif;
+}
+.descripcion,ul{
+  margin-bottom: 5px;
+}
+
+.btn-editar {
+  background-color: #E6BC50;
+  border: none;
+  border-radius: 20px;
+  padding: 2px 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn-editar:hover {
+  background-color: #B48B37;
+}
+

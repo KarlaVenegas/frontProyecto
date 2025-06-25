@@ -48,7 +48,7 @@ body {
 .cuenta-container {
   background-color: #f7efed;
   padding: 40px;
-  max-width: 700px;
+  max-width: 600px;
   margin: 40px auto;
   border-radius: 12px;
 }
@@ -103,15 +103,6 @@ body {
   text-align: left;
 }
 
-.cuenta-container {
-  background-color: #f7efed;
-  padding: 40px;
-  max-width: 500px;
-  margin: 40px auto;
-  border-radius: 12px;
-  font-family: Arial, sans-serif;
-}
-
 .space{
   margin-bottom: 0.5vw;
 }
@@ -119,8 +110,7 @@ body {
 /* ----------- INPUT FLOAT LABEL ----------- */
 
 .container {
-  width: 100%;
-  max-width: 700px;
+  max-width: 600px;
   height: 2.5em;
   position: relative;
   margin-bottom: 30px;
