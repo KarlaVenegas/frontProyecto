@@ -1,10 +1,12 @@
 import { Routes } from '@angular/router';
 //Flujo principal
 import { NavBarPrincipalComponent } from './NavBars/nav-bar-principal/nav-bar-principal.component';
-import {LoginComponent} from './principal/login/login.component';
-import {CrearCuentaComponent} from './principal/crear-cuenta/crear-cuenta.component';
-import {CambiarContrasenaComponent} from './principal/cambiar-contrasena/cambiar-contrasena.component';
-
+import { InicioComponent } from './principal/inicio/inicio.component';
+import { ExplorarCafeteriasComponent } from './principal/explorar-cafeterias/explorar-cafeterias.component';
+import { LoginComponent } from './principal/login/login.component';
+import { CrearCuentaComponent } from './principal/crear-cuenta/crear-cuenta.component';
+import { CambiarContrasenaComponent } from './principal/cambiar-contrasena/cambiar-contrasena.component';
+import { MenuCafeteriasComponent } from './principal/menu-cafeterias/menu-cafeterias.component';
 
 //Comprador flujo
 import { NavBarCompradorComponent } from './NavBars/nav-bar-comprador/nav-bar-comprador.component';
@@ -20,12 +22,16 @@ import { ActualizarCuentaComponent } from './comprador/actualizar-cuenta/actuali
 
 export const routes: Routes = [
   {
-    path: 'principal',
+    path: '',
     component : NavBarPrincipalComponent,
     children:[
+      { path: '', redirectTo: 'inicio', pathMatch: 'full'},
+      { path: 'inicio', component: InicioComponent},
+      { path: 'expCafeteriasIni', component: ExplorarCafeteriasComponent},
       { path: 'login', component: LoginComponent },
       { path: 'crearCuenta', component: CrearCuentaComponent },
-      {path: 'cambiarContrasena', component: CambiarContrasenaComponent}
+      { path: 'cambiarContrasena', component: CambiarContrasenaComponent},
+      { path: 'menuCafeIni', component: MenuCafeteriasComponent}
     ]
   },
   {

@@ -1,6 +1,5 @@
+<h1>Crear Cuenta</h1>
 <div class="crear-cuenta">
-<br>
-<h2>Crear Cuenta</h2>
 
 <p>Bajo que rol te deseas registrar:</p>
 <div class="optButton" style="margin-bottom: 16px;">
@@ -15,55 +14,87 @@
 <form *ngIf="form" [formGroup]="form" (ngSubmit)="enviar()">
   <!-- Cafetería -->
   <div *ngIf="tipo === 'cafeteria'">
-    <input formControlName="nombreCafeteria" type="text" placeholder="Nombre de la cafetería"
-           [ngClass]="{'ng-invalid ng-touched': form.get('nombreCafeteria')?.invalid && form.get('nombreCafeteria')?.touched}" />
+    <div class="container">
+      <input formControlName="nombreCafeteria" type="text" placeholder=" " class="form__input"
+            [ngClass]="{'ng-invalid ng-touched': form.get('nombreCafeteria')?.invalid && form.get('nombreCafeteria')?.touched}" />
+      <label>Nombre de la cafetería</label>
+    </div>
     <div class="error-text" *ngIf="form.get('nombreCafeteria')?.invalid && form.get('nombreCafeteria')?.touched">Campo obligatorio</div>
-    <br><br>
-    <input formControlName="ubicacion" type="text" placeholder="Ubicación de la cafetería"
-           [ngClass]="{'ng-invalid ng-touched': form.get('ubicacion')?.invalid && form.get('ubicacion')?.touched}" />
+
+    <div class="container">
+      <input formControlName="ubicacion" type="text" placeholder=" " class="form__input"
+            [ngClass]="{'ng-invalid ng-touched': form.get('ubicacion')?.invalid && form.get('ubicacion')?.touched}" />
+      <label>Ubicación de la cafetería</label>
+    </div>
     <div class="error-text" *ngIf="form.get('ubicacion')?.invalid && form.get('ubicacion')?.touched">Campo obligatorio</div>
 
-    <label>Horario de apertura</label>
-    <input formControlName="horarioApertura" type="time"
-           [ngClass]="{'ng-invalid ng-touched': form.get('horarioApertura')?.invalid && form.get('horarioApertura')?.touched}" />
+    <div class="container">
+      <input formControlName="horarioApertura" type="time" placeholder=" " class="form__input"
+            [ngClass]="{'ng-invalid ng-touched': form.get('horarioApertura')?.invalid && form.get('horarioApertura')?.touched}" />
+      <label>Horario de apertura</label>
+    </div>
     <div class="error-text" *ngIf="form.get('horarioApertura')?.invalid && form.get('horarioApertura')?.touched">Campo obligatorio</div>
 
-    <label>Horario de cierre</label>
-    <input formControlName="horarioCierre" type="time"
-           [ngClass]="{'ng-invalid ng-touched': form.get('horarioCierre')?.invalid && form.get('horarioCierre')?.touched}" />
+    <div class="container">
+      <input formControlName="horarioCierre" type="time" placeholder=" " class="form__input"
+            [ngClass]="{'ng-invalid ng-touched': form.get('horarioCierre')?.invalid && form.get('horarioCierre')?.touched}" />
+      <label>Horario de cierre</label>
+    </div>
     <div class="error-text" *ngIf="form.get('horarioCierre')?.invalid && form.get('horarioCierre')?.touched">Campo obligatorio</div>
-    <br><br>
-    <input formControlName="correo" type="email" placeholder="Correo electrónico de la cafetería"
-           [ngClass]="{'ng-invalid ng-touched': form.get('correo')?.invalid && form.get('correo')?.touched}" />
+
+    <div class="container">
+      <input formControlName="correo" type="email" placeholder=" " class="form__input"
+            [ngClass]="{'ng-invalid ng-touched': form.get('correo')?.invalid && form.get('correo')?.touched}" />
+      <label>Correo electrónico</label>
+    </div>
     <div class="error-text" *ngIf="form.get('correo')?.invalid && form.get('correo')?.touched">Campo obligatorio</div>
-    <br><br>
-    <input formControlName="contrasena" type="password" placeholder="Contraseña de la cafetería"
-           [ngClass]="{'ng-invalid ng-touched': form.get('contrasena')?.invalid && form.get('contrasena')?.touched}" />
+
+    <div class="container">
+      <input formControlName="contrasena" type="password" placeholder=" " class="form__input"
+            [ngClass]="{'ng-invalid ng-touched': form.get('contrasena')?.invalid && form.get('contrasena')?.touched}" />
+      <label>Contraseña</label>
+    </div>
     <div class="error-text" *ngIf="form.get('contrasena')?.invalid && form.get('contrasena')?.touched">Campo obligatorio</div>
   </div>
 
   <!-- Comprador -->
   <div *ngIf="tipo === 'comprador'">
-    <input formControlName="nombre" type="text" placeholder="Nombre del comprador"
-           [ngClass]="{'ng-invalid ng-touched': form.get('nombre')?.invalid && form.get('nombre')?.touched}" />
+    <div class="container">
+      <input formControlName="nombre" type="text" placeholder=" " class="form__input"
+            [ngClass]="{'ng-invalid ng-touched': form.get('nombre')?.invalid && form.get('nombre')?.touched}" />
+      <label>Nombre del comprador</label>
+    </div>
     <div class="error-text" *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched">Campo obligatorio</div>
-    <br><br>
-    <input formControlName="apellidoPaterno" type="text" placeholder="Apellido paterno"
-           [ngClass]="{'ng-invalid ng-touched': form.get('apellidoPaterno')?.invalid && form.get('apellidoPaterno')?.touched}" />
+
+    <div class="container">
+      <input formControlName="apellidoPaterno" type="text" placeholder=" " class="form__input"
+            [ngClass]="{'ng-invalid ng-touched': form.get('apellidoPaterno')?.invalid && form.get('apellidoPaterno')?.touched}" />
+      <label>Apellido paterno</label>
+    </div>
     <div class="error-text" *ngIf="form.get('apellidoPaterno')?.invalid && form.get('apellidoPaterno')?.touched">Campo obligatorio</div>
-    <br><br>
-    <input formControlName="apellidoMaterno" type="text" placeholder="Apellido materno"
-           [ngClass]="{'ng-invalid ng-touched': form.get('apellidoMaterno')?.invalid && form.get('apellidoMaterno')?.touched}" />
+
+    <div class="container">
+      <input formControlName="apellidoMaterno" type="text" placeholder=" " class="form__input"
+            [ngClass]="{'ng-invalid ng-touched': form.get('apellidoMaterno')?.invalid && form.get('apellidoMaterno')?.touched}" />
+      <label>Apellido materno</label>
+    </div>
     <div class="error-text" *ngIf="form.get('apellidoMaterno')?.invalid && form.get('apellidoMaterno')?.touched">Campo obligatorio</div>
-    <br><br>
-    <input formControlName="correo" type="email" placeholder="Correo electrónico"
-           [ngClass]="{'ng-invalid ng-touched': form.get('correo')?.invalid && form.get('correo')?.touched}" />
+
+    <div class="container">
+      <input formControlName="correo" type="email" placeholder=" " class="form__input"
+            [ngClass]="{'ng-invalid ng-touched': form.get('correo')?.invalid && form.get('correo')?.touched}" />
+      <label>Correo electrónico</label>
+    </div>
     <div class="error-text" *ngIf="form.get('correo')?.invalid && form.get('correo')?.touched">Campo obligatorio</div>
-    <br><br>
-    <input formControlName="contrasena" type="password" placeholder="Contraseña"
-           [ngClass]="{'ng-invalid ng-touched': form.get('contrasena')?.invalid && form.get('contrasena')?.touched}" />
+
+    <div class="container">
+      <input formControlName="contrasena" type="password" placeholder=" " class="form__input"
+            [ngClass]="{'ng-invalid ng-touched': form.get('contrasena')?.invalid && form.get('contrasena')?.touched}" />
+      <label>Contraseña</label>
+    </div>
     <div class="error-text" *ngIf="form.get('contrasena')?.invalid && form.get('contrasena')?.touched">Campo obligatorio</div>
   </div>
+
 
   <button type="submit" [disabled]="!form.valid">Crear Cuenta</button>
 </form>

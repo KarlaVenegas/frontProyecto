@@ -1,50 +1,103 @@
+/*Letras*/
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+
+h1 {
+  font-family: 'Outfit',sans-serif;
+  font-size: 35px;
+  text-align: center;
+  margin-top: 1.5vw;
+}
 
 .login-container {
-  max-width: 650px;
-  margin: auto;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  background-color: #f7efed;
+  padding: 40px;
+  max-width: 600px;
+  margin: 40px auto;
+  border-radius: 12px;
 }
 
-.login-container h1 {
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.login-container label {
-  margin-top: 1rem;
-  font-weight: 500;
-}
-
-.login-container input {
-  width: 100%;
-  padding: 0.7rem;
-  margin-top: 0.25rem;
-  border-radius: 0.3rem;
-  border: 1px solid #000000;
-  background-color: #eae0dd;
-}
-
-.login-container button {
-  margin-left: 5rem;
-  margin-top: 3rem;
-  width: 70%;
-  padding: 0.75rem;
+button[type="submit"] {
   background-color: #E6BC50;
-  color: #fff;
   border: none;
-  border-radius: 2rem;
-  font-weight: 600;
+  border-radius: 20px;
+  font-weight: 500;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #000000;
+  height: 40px;
+  width: 200px;
+  display: block;
+  margin: 32px auto 0 auto;
+  margin-top: -1.2vw;
 }
-.login-container button:hover {
+
+button[type="submit"]:hover {
   background-color: #B48B37;
 }
 
+/* Estilo flotante para inputs */
+.container {
+  max-width: 600px;
+  height: 2.5em;
+  position: relative;
+  margin-bottom: 30px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.form__input {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  border: 2px solid #BF5E54;
+  border-radius: 0.5em;
+  outline: none;
+  color: #000000;
+  padding: 0 1em;
+  font-size: 1rem;
+}
+
+label {
+  position: absolute;
+  left: 1.5em;
+  top: 0.75em;
+  background-color: #f7efed;
+  color: #BF5E54;
+  padding: 0 0.25em;
+  transition: top 0.3s ease, font-size 0.3s ease;
+  pointer-events: none;
+}
+
+/* Activación del label al enfocar o tener texto */
+.form__input:focus ~ label,
+.form__input:not(:placeholder-shown) ~ label {
+  top: -0.6em;
+  font-size: 0.75rem;
+}
+/* Hover y focus visual */
+.form__input:hover {
+  border: 2px solid #BF5E54;
+}
+
+.form__input:focus {
+  border: 2px solid #BF5E54;
+}
+
+/* Estilos de error */
+input.ng-invalid.ng-touched {
+  border-color: #BF5E54;
+}
+
+.error-text {
+  color: #833a32;
+  font-size: 0.9em;
+  padding-left: 1.3em;
+  position:relative;
+  top: -25px;
+}
+
+
+/*Links*/
 .login-links {
   margin-top: 1rem;
   text-align: center;

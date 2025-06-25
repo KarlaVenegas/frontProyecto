@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-explorar-cafeterias',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './explorar-cafeterias.component.css'
 })
 export class ExplorarCafeteriasComponent {
+  constructor(private router: Router) {}
+
+  irAlMenu() {
+    this.router.navigate(['/menuCafeIni']);
+  }
 
 }
