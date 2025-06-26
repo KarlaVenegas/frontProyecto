@@ -29,7 +29,7 @@ p{
 
 }
 
-button[type="button"] {
+.optButton button[type="button"] {
   background-color: #E6BC50;
   border: none;
   border-radius: 20px;
@@ -38,14 +38,13 @@ button[type="button"] {
   cursor: pointer;
   transition: background-color 0.3s ease;
   color: #000000;
-
 }
 
-button[type="button"].activo {
+.optButton button[type="button"].activo {
   background-color: #B48B37;
-  font-weight: 500;
   color: white;
 }
+
 
 label {
   position: absolute;

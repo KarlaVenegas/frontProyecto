@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-  import {
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import {
   FormBuilder,
   FormGroup,
   Validators,
@@ -22,7 +24,11 @@ import {NgClass, NgIf} from '@angular/common';
   export class CambiarContrasenaComponent implements OnInit {
     loginForm!: FormGroup;
 
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder, private router: Router, private location: Location) {}
+
+    goBack(): void {
+        this.location.back();
+    }
 
     ngOnInit(): void {
       this.loginForm = this.fb.group({
