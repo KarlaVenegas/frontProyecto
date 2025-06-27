@@ -1,0 +1,58 @@
+/*Letras*/
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+
+h1{
+  font-family: 'Outfit',sans-serif;
+  font-size: 35px;
+  text-align: center;
+  margin-top: 1.5vw;
+}
+
+.cuenta-container {
+  background-color: #f7efed;
+  padding: 40px;
+  max-width: 600px;
+  margin: 40px auto;
+  border-radius: 12px;
+}
+
+.menu-card {
+  font-family: 'Montserrat', sans-serif;
+  padding: 10px;
+  background-color: transparent;
+  transition: transform 0.2s ease;
+  text-align: left;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.btn-anadir {
+  background-color: #E6BC50;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn-anadir:hover {
+  background-color: #B48B37;
+}
+
+.btn-eliminar {
+  background-color: #B48B37;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn-eliminar:hover {
+  background-color: #E6BC50;
+}

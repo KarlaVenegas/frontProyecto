@@ -16,9 +16,17 @@ import { RecompensasCompComponent } from './comprador/recompensas-comp/recompens
 import { MiCuentaCompComponent } from './comprador/mi-cuenta-comp/mi-cuenta-comp.component';
 import { TuCarritoCompComponent } from './comprador/tu-carrito-comp/tu-carrito-comp.component';
 import { MenuComComponent } from './comprador/menu-com/menu-com.component';
+import { ActualizarCuentaComponent } from './comprador/actualizar-cuenta/actualizar-cuenta.component';
+
 //Cafeteria flujo
 import { NavBarCafeteriasComponent } from './NavBars/nav-bar-cafeterias/nav-bar-cafeterias.component';
-import { ActualizarCuentaComponent } from './comprador/actualizar-cuenta/actualizar-cuenta.component';
+import { PrincipalcafeComponent } from './cafeteria/principalcafe/principalcafe.component';
+import { ActualizarcafeComponent } from './cafeteria/actualizarcafe/actualizarcafe.component';
+import { AgregarproductoComponent } from './cafeteria/agregarproducto/agregarproducto.component';
+import { GestionarproductoscafeComponent } from './cafeteria/gestionarproductoscafe/gestionarproductoscafe.component';
+import { MicuentacafeComponent } from './cafeteria/micuentacafe/micuentacafe.component';
+import { VerpedidoscafeComponent } from './cafeteria/verpedidoscafe/verpedidoscafe.component';
+import { VerreseniacafeComponent } from './cafeteria/verreseniacafe/verreseniacafe.component';
 
 export const routes: Routes = [
   {
@@ -49,10 +57,17 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'cafeterias',
+    path: 'cafeteria',
     component : NavBarCafeteriasComponent,
     children:[
-      //aqui van las rutas del flujo cafeterias
+      { path: '', redirectTo: 'principalCafe', pathMatch: 'full'},
+      { path: 'principalCafe', component: PrincipalcafeComponent},
+      { path: 'actualizarCafe', component: ActualizarcafeComponent},
+      { path: 'gestProductos', component: GestionarproductoscafeComponent},
+      { path: 'miCuentaCafe', component: MicuentacafeComponent},
+      { path: 'verPedidos', component: VerpedidoscafeComponent},
+      { path: 'verResenia', component: VerreseniacafeComponent},
+      { path: 'agregarProductos', component: AgregarproductoComponent},
     ]
   }
 ];

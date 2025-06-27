@@ -1,1 +1,49 @@
-<p>actualizarcafe works!</p>
+<div class="menu-header">
+  <button (click)="goBack()" class="back-button" aria-label="Volver">
+    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-arrow-90deg-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708z"/>
+    </svg>
+  </button>
+  <h1 class="menu-title">Actualizar Datos</h1>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="guardar()" class="cuenta-container">
+
+  <div class="menu-card"><strong>Nombre de la Cafetería:</strong> Cafetería Mylssa</div>
+  <div class="menu-card space"><strong>Ubicación:</strong> ESCOM IPN, Unidad Profesional Adolfo López Mateos, Av. Juan de Dios Bátiz, Nueva Industrial Vallejo, Gustavo A. Madero, 07320 Ciudad de México, CDMX</div>
+
+  <div class="container">
+    <input formControlName="horaApertura" type="time" id="horaApertura" name="apertura" required placeholder=" " class="form__input"/>
+    <label for="horaApertura">Horario de apertura</label>
+  </div>
+  <div class="error-msg" *ngIf="form.get('horaApertura')?.invalid && form.get('horaApertura')?.touched">Campo obligatorio</div>
+
+  <div class="container">
+    <input formControlName="horaCierre" type="time" id="horaCierre" name="cierre" required placeholder=" " class="form__input"/>
+    <label for="horaCierre">Horario de cierre</label>
+  </div>
+  <div class="error-msg" *ngIf="form.get('horaCierre')?.invalid && form.get('horaCierre')?.touched">Campo obligatorio</div>
+
+  <div class="container">
+    <input formControlName="correo" type="email" id="correo" name= "correo"autocomplete="off" required placeholder=" " class="form__input"/>
+    <label for="correo">Correo electónico</label>
+  </div>
+  <div class="error-msg" *ngIf="form.get('correo')?.invalid && form.get('correo')?.touched">Campo obligatorio</div>
+
+  <div class="container">
+    <input formControlName="contrasena" type="password" id="contrasena" name="contrasenaModel" autocomplete="off" required placeholder=" " class="form__input"/>
+    <label for="contrasena">Contraseña</label>
+
+  </div>
+  <div class="error-msg" *ngIf="form.get('contrasena')?.invalid && form.get('contrasena')?.touched">Campo obligatorio</div>
+
+
+
+
+  <!-- Botones -->
+  <div class="button-group" style="margin-top: 20px;">
+    <button class="btn-eliminar" (click)="irA()">Cancelar</button>
+    <button class="btn-anadir" (click)="guardar()" [disabled]="form.invalid">Guardar</button>
+  </div>
+
+</form>
