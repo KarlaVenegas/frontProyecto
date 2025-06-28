@@ -1,48 +1,28 @@
 <h1>Mi Carrito</h1>
 
 <div class="container">
-  <h3>Cafetería: Mylssa</h3>
-  <p>Resumen del pedido: </p>
+  <h3 *ngIf="productosCarrito.length > 0">
+    Cafetería: {{ productosCarrito[0]?.producto?.cafeteria?.nombre || 'Sin cafetería' }}
+  </h3>
+  <p *ngIf="productosCarrito.length === 0">No hay productos en el carrito.</p>
+  <p *ngIf="productosCarrito.length > 0">Resumen del pedido:</p>
 
-  <form #form="" class="">
+  <form *ngIf="productosCarrito.length > 0">
     <div class="lista-productos">
-        <!-- Producto 1 aqui se van agregando -->
-        <div class="producto">
-          <div class="producto-info">
-            <span class="nombre">Café Americano</span>
-            <span class="precio">$25 x 2</span>
-          </div>
-
-          <div class="controles">
-            <button>-</button>
-            <span>2</span>
-            <button>+</button>
-          </div>
+      <div class="producto" *ngFor="let item of productosCarrito; let i = index">
+        <div class="producto-info">
+          <span class="nombre">{{ item.producto.nombreProducto }}</span>
+          <span class="precio">${{ item.producto.precio }} x {{ item.cantidad }}</span>
         </div>
-
-
-        <div class="producto">
-          <div class="producto-info">
-            <span class="nombre">Pan de Elote</span>
-            <span class="precio">$15 x 1</span>
-          </div>
-
-          <div class="controles">
-            <button>-</button>
-            <span>1</span>
-            <button>+</button>
-          </div>
+        <div class="controles">
+          <button type="button" (click)="restarCantidad(i)">-</button>
+          <span>{{ item.cantidad }}</span>
+          <button type="button" (click)="sumarCantidad(i)" [disabled]="item.cantidad >= item.producto.stock">+</button>
         </div>
-
-        <hr class="linea-separadora">
-        <span class="total">Total: $65.00</span>
-        <button class="btn-anadir">Realizar Pedido</button>
       </div>
+      <hr class="linea-separadora">
+      <span class="total">Total: ${{ calcularTotal() | number:'1.2-2' }}</span>
+      <button class="btn-anadir" type="button" >Realizar Pedido</button>
+    </div>
   </form>
-
-
-
-
-
-
 </div>
