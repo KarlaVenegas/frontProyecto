@@ -1,0 +1,66 @@
+.firstDiv {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("public/img/ipnZacatenco.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh;
+  color: white;
+}
+
+.optButton {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 10px;
+
+}
+
+button {
+  background-color: #E6BC50;
+  border: none;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #000000;
+  height: 40px;
+  width: 200px;
+  display: block;
+  margin: 32px auto 0 auto;
+  margin-top: 1.2vw;
+}
+
+button:hover {
+  background-color: #B48B37;
+  color: black;
+}
+
+.linea-vertical-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.linea-vertical {
+  width: 1px;
+  height: 20vh;
+  background-color: #000;
+}
+
+
+.divisor {
+  background-color: #eae0dd;
+  border-color: transparent;
+}
+
+.imgCafe {
+  max-width: 100%;
+  height: auto;
+  transform: scale(2.0); /* Imagen ligeramente más grande */
+  transition: transform 0.3s ease;
+}
+
+.imgCafe:hover {
+  transform: scale(1.6);
+}
+

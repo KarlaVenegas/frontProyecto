@@ -16,7 +16,7 @@ h1 {
   border-radius: 12px;
 }
 
-button[type="submit"] {
+button {
   background-color: #E6BC50;
   border: none;
   border-radius: 20px;
