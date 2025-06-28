@@ -63,7 +63,7 @@ h1{
 }
 
 .menu-card {
- font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   border: 2px solid #BF5E54;
   border-radius: 8px;
   padding: 10px;
@@ -107,3 +107,81 @@ h1{
 .icon-btn:focus {
   outline: none;
 }
+
+/*Modal*/
+.modal{
+  font-family: 'Montserrat', sans-serif;
+}
+.modal-header{
+  background-color: #bc847d;
+}
+
+.modal-title{
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+}
+
+.modal-content{
+  background-color: #bc847d;;
+}
+
+.modal-dialog{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+input{
+  background-color: #eae0dd;
+}
+
+/* INPUT ESTILO GENERAL */
+input.form-control {
+  background-color: #eae0dd;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+/* INPUT AL HACER FOCUS */
+input.form-control:focus {
+  background-color: #eae0dd;
+  border: 2px solid #BF5E54;
+  box-shadow: none; /* Quita el borde azul de Bootstrap */
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 3vw;
+}
+
+.btn-anadir {
+  background-color: #E6BC50;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn-anadir:hover {
+  background-color: #B48B37;
+}
+
+.btn-eliminar {
+  background-color: #B48B37;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn-eliminar:hover {
+  background-color: #E6BC50;
+}
+

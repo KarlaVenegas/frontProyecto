@@ -1,1 +1,52 @@
-<p>verpedidoscafe works!</p>
+<h1>Visualizar Pedidos</h1>
+<div class="container my-4">
+  <div class="mb-3">
+    <ng-select
+      [items]="['Todos','Esta semana', 'Este Mes']"
+      [(ngModel)]="opcionSeleccionada"
+      [searchable]="false"
+      [clearable]="false"
+      bindLabel=""
+      class="custom-ng-select"
+      placeholder="">
+    </ng-select>
+  </div>
+
+  <div class="accordion" id="accordionPedidos">
+    <!-- AQUI SE CAMBIA LA INFO DE PEDIDOS Y SE VAN AGREGADNDO-->
+    <div class="accordion" id="accordionPedidos">
+      <div class="accordion-item" *ngFor="let pedido of pedidos; let i = index">
+        <h2 class="accordion-header" [id]="'heading' + i">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#collapse' + i"
+            [attr.aria-controls]="'collapse' + i"
+            [attr.aria-expanded]="i === 0 ? 'true' : 'false'">
+            <div class="d-flex flex-column flex-md-row justify-content-between w-100">
+              <span>Pedido #{{ pedido.id }}</span>
+              <span class="fecha">{{ pedido.fecha }}</span>
+            </div>
+          </button>
+        </h2>
+        <div [id]="'collapse' + i"
+            class="accordion-collapse collapse"
+            [class.show]="i === 0"
+            [attr.aria-labelledby]="'heading' + i"
+            data-bs-parent="#accordionPedidos">
+          <div class="accordion-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <p class="descripcion m-0"><strong>Productos:</strong></p>
+              <p class="descripcion m-0"><strong>Total:</strong> <em> ${{ pedido.total }} MXN</em></p>
+            </div>
+
+            <ul>
+              <li *ngFor="let producto of pedido.productos">{{ producto }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
