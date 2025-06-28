@@ -6,6 +6,7 @@ import { ProductoService } from '../../services/producto.service';
 import { CommonModule } from '@angular/common';
 import { CafeteriaService } from '../../services/cafeteria.service';
 import { Cafeteria } from '../../models/cafeteria';
+import { CarritoService } from '../../services/carrito.service';
 
 @Component({
   selector: 'app-menu-com',
@@ -23,7 +24,8 @@ export class MenuComComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     private productoService: ProductoService,
-    private cafeteriaService: CafeteriaService
+    private cafeteriaService: CafeteriaService,
+    private carritoService: CarritoService
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +46,10 @@ export class MenuComComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  anadirAlCarrito(producto: Producto): void {
+    this.carritoService.addProducto(producto);
   }
 
 

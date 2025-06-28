@@ -17,7 +17,7 @@
       <p>Precio: ${{ producto.precio }}</p>
       <p *ngIf="producto.stock > 0">Disponible</p>
       <p *ngIf="producto.stock === 0">Agotado</p>
-      <button class="btn-anadir" [disabled]="producto.stock === 0">+ Añadir</button>
+      <button class="btn-anadir" [disabled]="producto.stock === 0" (click)="anadirAlCarrito(producto)">+ Añadir</button>
     </div>
   </div>
 </div>
