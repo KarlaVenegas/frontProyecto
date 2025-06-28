@@ -1,63 +1,23 @@
 <div class="menu-header">
   <button (click)="goBack()" class="back-button" aria-label="Volver">
     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-arrow-90deg-left" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708z"/>
+      <path [attr.fill-rule]="'evenodd'" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708z"/>
     </svg>
   </button>
-  <h1 class="menu-title">Menú Mylssa</h1>
+  <h1 class="menu-title">
+    Menú <span *ngIf="cafeteriaNombre">- {{ cafeteriaNombre }}</span>
+  </h1>
 </div>
 
 <div class="container">
-    <div class="menu-grid">
-    <div class="menu-card">
+  <div class="menu-grid">
+    <div class="menu-card" *ngFor="let producto of productos">
       <img src="/img/food1.jpg" alt="Producto" class="menu-img" />
-      <h5>Sándwich clásico</h5>
-      <p>Precio: $35.00</p>
-      <p>Disponible</p>
-      <button class="btn-anadir">+ Añadir</button>
-    </div>
-    <div class="menu-card">
-      <img src="/img/food2.jpg" alt="Producto" class="menu-img" />
-      <h5>Coca Cola 600ml</h5>
-      <p>Precio: $20.00</p>
-      <p>Disponible</p>
-      <button class="btn-anadir">+ Añadir</button>
-    </div>
-    <div class="menu-card">
-      <img src="/img/food3.jpg" alt="Producto" class="menu-img" />
-      <h5>Chapata de carne</h5>
-      <p>Precio: $40.00</p>
-      <p>Disponible</p>
-      <button class="btn-anadir">+ Añadir</button>
-    </div>
-    <div class="menu-card">
-      <img src="/img/food4.jpg" alt="Producto" class="menu-img" />
-      <h5>Té verde</h5>
-      <p>Precio: $35.00</p>
-      <p>Disponible</p>
-      <button class="btn-anadir">+ Añadir</button>
-    </div>
-    <div class="menu-card">
-      <img src="/img/food5.jpg" alt="Producto" class="menu-img" />
-      <h5>Tacos de pastor</h5>
-      <p>Precio: $12.00</p>
-      <p>Disponible</p>
-      <button class="btn-anadir">+ Añadir</button>
-    </div>
-    <div class="menu-card">
-      <img src="/img/food6.jpg" alt="Producto" class="menu-img" />
-      <h5>Dona chocolate</h5>
-      <p>Precio: $18.00</p>
-      <p>Disponible</p>
-      <button class="btn-anadir">+ Añadir</button>
+      <h5>{{ producto.nombreProducto }}</h5>
+      <p>Precio: ${{ producto.precio }}</p>
+      <p *ngIf="producto.stock > 0">Disponible</p>
+      <p *ngIf="producto.stock === 0">Agotado</p>
+      <button class="btn-anadir" [disabled]="producto.stock === 0">+ Añadir</button>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
