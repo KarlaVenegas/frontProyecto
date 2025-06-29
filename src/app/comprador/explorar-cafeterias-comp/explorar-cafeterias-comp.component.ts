@@ -11,7 +11,7 @@ export class ExplorarCafeteriasCompComponent {
 
   constructor(private router: Router) {}
 
-  irAlMenu() {
+  irAlMenu(id: number) {
     this.router.navigate(['/comprador/menuCafe']);
   }
 
