@@ -2,7 +2,7 @@
 
 <div class="container">
   <h3 *ngIf="productosCarrito.length > 0">
-    Cafetería: {{ productosCarrito[0]?.producto?.cafeteria?.nombre || 'Sin cafetería' }}
+    Cafetería: {{ productosCarrito[0].producto.cafeteria.nombre || 'Sin cafetería' }}
   </h3>
   <p *ngIf="productosCarrito.length === 0">No hay productos en el carrito.</p>
   <p *ngIf="productosCarrito.length > 0">Resumen del pedido:</p>

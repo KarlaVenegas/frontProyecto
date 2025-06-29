@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-explorar-cafeterias-comp',
-  imports: [],
+  imports: [CommonModule],
+  standalone: true,
   templateUrl: './explorar-cafeterias-comp.component.html',
   styleUrl: './explorar-cafeterias-comp.component.css'
 })
 export class ExplorarCafeteriasCompComponent {
+  cafeterias: any[] = [];
 
   constructor(private router: Router) {}
 
