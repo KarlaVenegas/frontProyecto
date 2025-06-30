@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { CafeteriaService } from '../../services/cafeteria.service';
 import { Cafeteria } from '../../models/cafeteria';
 import { CarritoService } from '../../services/carrito.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-menu-com',
@@ -49,6 +51,21 @@ export class MenuComComponent implements OnInit {
   }
 
   anadirAlCarrito(producto: Producto): void {
-    this.carritoService.addProducto(producto);
-  }
+  this.carritoService.addProducto(producto);
+
+  Swal.fire({
+    icon: 'success',
+    title: '¡Añadido!',
+    text: `${producto.nombreProducto} se añadió al carrito.`,
+    confirmButtonText: 'Aceptar',
+    customClass: {
+      confirmButton: 'btn-anadir'
+    },
+    buttonsStyling: false,
+    iconColor: '#E6BC50', // color del ícono (check)
+    timer: 2000,
+    timerProgressBar: true
+  });
+}
+
 }

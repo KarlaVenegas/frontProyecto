@@ -5,6 +5,7 @@ import { Producto } from '../../models/producto';
 import { PedidoService } from '../../services/pedido.service';
 import { PuntosService } from '../../services/puntos.service';
 import { forkJoin } from 'rxjs';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-tu-carrito-comp',
   standalone: true,
@@ -86,7 +87,19 @@ usarMaximosPuntos() {
     );
   }
 
-  realizarPedido(): void {
+
+
+realizarPedido(): void {
+  Swal.fire({
+    title: 'Procesando pedido...',
+    text: 'Por favor espera',
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  });
+
   if (this.puntosUsados > 0) {
     this.puntosService.obtenerTodosQR().subscribe(qrs => {
       let puntosRestantes = this.puntosUsados;
@@ -104,8 +117,7 @@ usarMaximosPuntos() {
       });
     });
   } else {
-    // --- ACUMULAR PUNTOS SI NO SE USARON ---
-    const puntosAGanar = this.calcularTotalPuntos(); // 1 punto por peso gastado
+    const puntosAGanar = this.calcularTotalPuntos();
     this.puntosService.obtenerTodosQR().subscribe(qrs => {
       let qr = qrs.find(qr => qr.comprador && qr.comprador.id_Comprador === this.idComprador);
       if (qr) {
@@ -114,11 +126,10 @@ usarMaximosPuntos() {
           this.finalizarPedido();
         });
       } else {
-        // Si no existe QR, crea uno nuevo
         const nuevoQR = {
           cantidadPuntos: puntosAGanar,
           id_Comprador: this.idComprador,
-          caducidad: "2025-12-31" // O la fecha que corresponda
+          caducidad: "2025-12-31"
         };
         this.puntosService.crearQR(nuevoQR).subscribe(() => {
           this.finalizarPedido();
@@ -143,10 +154,22 @@ finalizarPedido() {
 
   this.pedidoService.crearPedido(pedido).subscribe({
     next: (res) => {
-      alert('¡Pedido realizado!');
+      Swal.close(); // Cierra el de cargando
+      Swal.fire({
+        icon: 'success',
+        title: '¡Pedido realizado!',
+        text: 'Tu pedido fue registrado correctamente.',
+        confirmButtonText: 'Aceptar',
+        customClass: {
+          confirmButton: 'btn-anadir'
+        },
+        buttonsStyling: false,
+        iconColor: '#E6BC50',
+        timer: 2000,
+        timerProgressBar: true
+      });
       this.productosCarrito = [];
       this.carritoService.limpiarCarrito?.();
-      // Vuelve a consultar los puntos para actualizar la vista
       this.puntosService.obtenerTodosQR().subscribe(qrs => {
         this.puntosDisponibles = qrs
           .filter(qr => qr.comprador && qr.comprador.id_Comprador === this.idComprador)
@@ -155,7 +178,18 @@ finalizarPedido() {
       this.puntosUsados = 0;
     },
     error: (err) => {
-      alert('Error al realizar el pedido');
+      Swal.close(); // Cierra el de cargando
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Error al realizar el pedido',
+        confirmButtonText: 'Aceptar',
+        customClass: {
+          confirmButton: 'btn-anadir'
+        },
+        buttonsStyling: false,
+        iconColor: '#E74C3C'
+      });
     }
   });
 }

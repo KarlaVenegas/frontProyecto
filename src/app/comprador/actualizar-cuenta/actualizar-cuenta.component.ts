@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { CompradorService } from '../../services/comprador.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-actualizar-cuenta',
@@ -49,15 +50,39 @@ ngOnInit() {
     correo: this.nuevoCorreo,
     contrasenia: this.nuevaClave
   };
+
   this.compradorService.actualizarComprador(idComprador, datosActualizados)
     .subscribe({
       next: () => {
-        alert('Datos actualizados correctamente');
-        this.router.navigate(['/comprador/miCuenta']);
+        Swal.fire({
+          icon: 'success',
+          title: '¡Actualizado!',
+          text: 'Datos actualizados correctamente.',
+          confirmButtonText: 'Aceptar',
+          customClass: {
+            confirmButton: 'btn-anadir'
+          },
+          buttonsStyling: false,
+          iconColor: '#E6BC50'
+        }).then(() => {
+          this.router.navigate(['/comprador/miCuenta']);
+        });
       },
       error: () => {
-        alert('Error al actualizar los datos');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Hubo un problema al actualizar los datos.',
+          confirmButtonText: 'Intentar de nuevo',
+          customClass: {
+            confirmButton: 'btn-anadir'
+          },
+          buttonsStyling: false,
+          iconColor: '#E6BC50'  // <- aquí se cambia el color de la flechita
+        });
       }
     });
 }
+
+
 }
