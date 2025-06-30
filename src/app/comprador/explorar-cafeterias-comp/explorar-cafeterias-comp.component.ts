@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { CafeteriaService } from '../../services/cafeteria.service';
+import { Cafeteria } from '../../models/cafeteria';
 
 @Component({
   selector: 'app-explorar-cafeterias-comp',
@@ -9,13 +11,26 @@ import { CommonModule } from '@angular/common';
   templateUrl: './explorar-cafeterias-comp.component.html',
   styleUrl: './explorar-cafeterias-comp.component.css'
 })
-export class ExplorarCafeteriasCompComponent {
-  cafeterias: any[] = [];
+export class ExplorarCafeteriasCompComponent implements OnInit {
+  cafeterias: Cafeteria[] = [];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private cafeteriaService: CafeteriaService
+  ) {}
+
+  ngOnInit(): void {
+  this.cafeteriaService.getCafeterias().subscribe(data => {
+    this.cafeterias = data.sort((a, b) => {
+      // Si hora_inicio es string tipo "08:00", conviértelo a número para comparar
+      const horaA = a.hora_inicio;
+      const horaB = b.hora_inicio;
+      return horaA.localeCompare(horaB);
+    });
+  });
+}
 
   irAlMenu(id: number) {
-    this.router.navigate(['/comprador/menuCafe']);
+    this.router.navigate(['/comprador/menuCafe', id]);
   }
-
 }

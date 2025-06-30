@@ -13,6 +13,7 @@
         <div class="producto-info">
           <span class="nombre">{{ item.producto.nombreProducto }}</span>
           <span class="precio">${{ item.producto.precio }} x {{ item.cantidad }}</span>
+          <span class="puntos">Puntos: {{ item.producto.precioPuntos }} x {{ item.cantidad }} = {{ item.producto.precioPuntos * item.cantidad }}</span>
         </div>
         <div class="controles">
           <button type="button" (click)="restarCantidad(i)">-</button>
@@ -22,7 +23,8 @@
       </div>
       <hr class="linea-separadora">
       <span class="total">Total: ${{ calcularTotal() | number:'1.2-2' }}</span>
-      <button class="btn-anadir" type="button" >Realizar Pedido</button>
+      <span class="total-puntos">Total de puntos acumulados: {{ calcularTotalPuntos() }}</span>
+      <button class="btn-anadir" type="button" (click)="realizarPedido()">Realizar Pedido</button>
     </div>
   </form>
 </div>

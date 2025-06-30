@@ -12,7 +12,12 @@
 <div class="container">
   <div class="menu-grid">
     <div class="menu-card" *ngFor="let producto of productos">
-      <img src="/img/food1.jpg" alt="Producto" class="menu-img" />
+      <img *ngIf="producto.datosImagen"
+           [src]="'data:' + producto.tipoImagen + ';base64,' + producto.datosImagen"
+           alt="Producto" class="menu-img" />
+      <img *ngIf="!producto.datosImagen"
+           src="/img/food1.jpg"
+           alt="Producto" class="menu-img" />
       <h5>{{ producto.nombreProducto }}</h5>
       <p>Precio: ${{ producto.precio }}</p>
       <p *ngIf="producto.stock > 0">Disponible</p>

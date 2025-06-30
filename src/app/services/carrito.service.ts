@@ -21,6 +21,10 @@ export class CarritoService {
       this.productos.push({ producto, cantidad: 1 });
     }
   }
+  limpiarCarrito() {
+  this.productos = [];
+  localStorage.removeItem('carrito'); // Si usas localStorage
+}
 
   clearCarrito() {
     this.productos = [];
