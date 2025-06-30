@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CafeteriaService } from '../../services/cafeteria.service';
+import { CompradorService } from '../../services/comprador.service';
 import { Router } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
 
@@ -24,6 +25,7 @@ export class CrearCuentaComponent {
   constructor(
     private fb: FormBuilder,
     private cafeteriaService: CafeteriaService,
+    private compradorService: CompradorService,
     private router: Router
   ) {}
 
@@ -44,9 +46,9 @@ export class CrearCuentaComponent {
       this.form = this.fb.group({
         nombre: ['', Validators.required],
         apellidoPaterno: ['', Validators.required],
-        apellidoMaterno: ['', Validators.required],
+        apellidoMaterno: [''],
         correo: ['', [Validators.required, Validators.email]],
-        contrasena: ['', Validators.required]
+        contrasena: ['', [Validators.required, Validators.minLength(6)]]
       });
     }
   }
@@ -57,54 +59,76 @@ export class CrearCuentaComponent {
   }
 
   enviar() {
-    if (this.tipo === 'cafeteria' && this.form && this.form.valid) {
+    if (this.form && this.form.valid) {
       this.isLoading = true;
       this.errorMessage = null;
 
-      const formData = new FormData();
-      const horaApertura = this.form.get('horarioApertura')?.value || '08:00';
-      const horaCierre = this.form.get('horarioCierre')?.value || '18:00';
-
-      formData.append('nombre', this.form.get('nombreCafeteria')?.value);
-      formData.append('ubicacion', this.form.get('ubicacion')?.value);
-      formData.append('horaInicio', `${horaApertura}:00`);
-      formData.append('horaFin', `${horaCierre}:00`);
-      formData.append('correo', this.form.get('correo')?.value);
-      formData.append('contrasenia', this.form.get('contrasena')?.value);
-
-      if (this.selectedFile) {
-        formData.append('imagen', this.selectedFile);
+      if (this.tipo === 'cafeteria') {
+        this.registrarCafeteria();
+      } else {
+        this.registrarComprador();
       }
+    }
+  }
 
-      this.cafeteriaService.registrarCafeteria(formData).subscribe({
-        next: (response: any) => {
-          this.isLoading = false;
-          if (response.status === 201 || response.body?.includes('éxito')) {
-            alert('¡Registro exitoso! Serás redirigido al login.');
-            this.router.navigate(['/login']);
-          } else {
-            this.router.navigate(['/login']);
-          }
-        },
-        error: (err) => {
-          this.isLoading = false;
-          console.error('Error en el registro:', err);
+  private registrarCafeteria() {
+    const formData = new FormData();
+    const horaApertura = this.form?.get('horarioApertura')?.value || '08:00';
+    const horaCierre = this.form?.get('horarioCierre')?.value || '18:00';
 
-          if (err.status === 201 || err.message?.includes('201')) {
-            alert('¡Registro exitoso! Serás redirigido al login.');
-            this.router.navigate(['/login']);
-            return;
-          }
+    formData.append('nombre', this.form?.get('nombreCafeteria')?.value);
+    formData.append('ubicacion', this.form?.get('ubicacion')?.value);
+    formData.append('horaInicio', `${horaApertura}:00`);
+    formData.append('horaFin', `${horaCierre}:00`);
+    formData.append('correo', this.form?.get('correo')?.value);
+    formData.append('contrasenia', this.form?.get('contrasena')?.value);
 
-          if (err.error?.message) {
-            this.errorMessage = err.error.message;
-          } else if (err.message) {
-            this.errorMessage = err.message;
-          } else {
-            this.errorMessage = 'Error desconocido al registrar la cafetería';
-          }
-        }
-      });
+    if (this.selectedFile) {
+      formData.append('imagen', this.selectedFile);
+    }
+
+    this.cafeteriaService.registrarCafeteria(formData).subscribe({
+      next: (response: any) => this.handleSuccess(response),
+      error: (err) => this.handleError(err)
+    });
+  }
+
+  private registrarComprador() {
+    const compradorData = {
+      nombre: this.form?.get('nombre')?.value,
+      apellidoPaterno: this.form?.get('apellidoPaterno')?.value,
+      apellidoMaterno: this.form?.get('apellidoMaterno')?.value || null,
+      correo: this.form?.get('correo')?.value,
+      contrasenia: this.form?.get('contrasena')?.value
+    };
+
+    this.compradorService.registrarComprador(compradorData).subscribe({
+      next: (response: any) => this.handleSuccess(response),
+      error: (err) => this.handleError(err)
+    });
+  }
+
+  private handleSuccess(response: any) {
+    this.isLoading = false;
+    alert('¡Registro exitoso! Serás redirigido al login.');
+    this.router.navigate(['/login']);
+  }
+
+  private handleError(err: any) {
+    this.isLoading = false;
+    console.error('Error en el registro:', err);
+
+    if (err.status === 201) {
+      this.handleSuccess(err);
+      return;
+    }
+
+    if (err.error?.message) {
+      this.errorMessage = err.error.message;
+    } else if (err.message) {
+      this.errorMessage = err.message;
+    } else {
+      this.errorMessage = 'Error desconocido al registrar';
     }
   }
 }
