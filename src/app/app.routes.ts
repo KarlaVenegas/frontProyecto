@@ -52,7 +52,7 @@ export const routes: Routes = [
       { path: 'recompensas', component: RecompensasCompComponent },
       { path: 'miCuenta', component: MiCuentaCompComponent },
       { path: 'tuCarrito', component: TuCarritoCompComponent },
-      { path: 'menuCafe', component: MenuComComponent },
+      { path: 'menuCafe/:id', component: MenuComComponent },
       { path: 'actualizarCuenta', component: ActualizarCuentaComponent }
     ]
   },

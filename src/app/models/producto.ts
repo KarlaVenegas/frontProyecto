@@ -2,12 +2,10 @@ export interface Producto {
   id_producto: number;
   nombreProducto: string;
   precio: number;
+  precioPuntos: number;
   stock: number;
-  cafeteria: {
-    idCafeteria: number;
-    nombre: string;
-    ubicacion: string;
-    hora_inicio: string;
-    hora_fin: string;
-  };
+  cafeteria: any;
+  nombreImagen?: string;
+  tipoImagen?: string;
+  datosImagen?: string; // base64
 }

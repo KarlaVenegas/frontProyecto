@@ -29,20 +29,20 @@ export class MenuComComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cafeteriaId = Number(this.route.snapshot.paramMap.get('id'));
-    this.productoService.getProductos().subscribe((productos: Producto[]) => {
-      this.productos = productos.filter(
-        p => p.cafeteria.idCafeteria === this.cafeteriaId
-      );
-      if (this.productos.length > 0) {
-        this.cafeteriaNombre = this.productos[0].cafeteria.nombre;
-      } else {
-        this.cafeteriaService.getCafeteriaById(this.cafeteriaId).subscribe((cafeteria: Cafeteria) => {
-          this.cafeteriaNombre = cafeteria.nombre;
-        });
-      }
-    });
-  }
+  this.cafeteriaId = Number(this.route.snapshot.paramMap.get('id'));
+  this.productoService.getProductos().subscribe((productos: Producto[]) => {
+    this.productos = productos.filter(
+      p => p.cafeteria.idCafeteria === this.cafeteriaId
+    );
+    if (this.productos.length > 0) {
+      this.cafeteriaNombre = this.productos[0].cafeteria.nombre;
+    } else {
+      this.cafeteriaService.getCafeteriaById(this.cafeteriaId).subscribe((cafeteria: Cafeteria) => {
+        this.cafeteriaNombre = cafeteria.nombre;
+      });
+    }
+  });
+}
 
   goBack(): void {
     this.location.back();
@@ -51,6 +51,4 @@ export class MenuComComponent implements OnInit {
   anadirAlCarrito(producto: Producto): void {
     this.carritoService.addProducto(producto);
   }
-
-
 }
