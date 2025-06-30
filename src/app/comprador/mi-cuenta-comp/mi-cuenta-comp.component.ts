@@ -1,20 +1,26 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { CompradorService } from '../../services/comprador.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mi-cuenta-comp',
-  imports: [CommonModule, FormsModule],
   templateUrl: './mi-cuenta-comp.component.html',
-  styleUrl: './mi-cuenta-comp.component.css'
+  styleUrls: ['./mi-cuenta-comp.component.css']
 })
-export class MiCuentaCompComponent {
-  constructor(private router: Router) {}
+export class MiCuentaCompComponent implements OnInit {
+  comprador: any = {};
 
-irActualizar() {
-  this.router.navigate(['/comprador/actualizarCuenta']);
+  constructor(private compradorService: CompradorService,
+    private router: Router
+  ) {}
 
+  ngOnInit() {
+    this.compradorService.obtenerCompradorPorId(1).subscribe(data => {
+      this.comprador = data;
+    });
   }
 
+  irActualizar() {
+    this.router.navigate(['/comprador/actualizarCuenta']);
+  }
 }

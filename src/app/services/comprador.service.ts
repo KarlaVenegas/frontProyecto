@@ -20,6 +20,14 @@ export class CompradorService {
     );
   }
 
+  actualizarComprador(id: number, datos: any) {
+  return this.http.put(`${this.apiUrl}/${id}`, datos);
+}
+
+  obtenerCompradorPorId(id: number): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/${id}`);
+}
+
   private handleError(error: HttpErrorResponse) {
     console.error('Error en el servicio Comprador:', error);
 
