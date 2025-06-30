@@ -13,7 +13,63 @@
   <form *ngIf="form as f" [formGroup]="f" (ngSubmit)="enviar()">
     <!-- Formulario de Cafetería -->
     <div *ngIf="tipo === 'cafeteria'">
-      <!-- ... (mantén los campos existentes de cafetería) ... -->
+      <div class="container">
+        <input formControlName="nombreCafeteria" type="text" placeholder=" " class="form__input"
+               [ngClass]="{'ng-invalid ng-touched': f.get('nombreCafeteria')?.invalid && f.get('nombreCafeteria')?.touched}" />
+        <label>Nombre de la cafetería</label>
+      </div>
+      <div class="error-text" *ngIf="f.get('nombreCafeteria')?.invalid && f.get('nombreCafeteria')?.touched">Campo obligatorio</div>
+
+      <div class="container">
+        <input formControlName="ubicacion" type="text" placeholder=" " class="form__input"
+               [ngClass]="{'ng-invalid ng-touched': f.get('ubicacion')?.invalid && f.get('ubicacion')?.touched}" />
+        <label>Ubicación de la cafetería</label>
+      </div>
+      <div class="error-text" *ngIf="f.get('ubicacion')?.invalid && f.get('ubicacion')?.touched">Campo obligatorio</div>
+
+      <div class="container">
+        <input formControlName="horarioApertura" type="time" placeholder=" " class="form__input"
+               [ngClass]="{'ng-invalid ng-touched': f.get('horarioApertura')?.invalid && f.get('horarioApertura')?.touched}" />
+        <label>Horario de apertura</label>
+      </div>
+      <div class="error-text" *ngIf="f.get('horarioApertura')?.invalid && f.get('horarioApertura')?.touched">Campo obligatorio</div>
+
+      <div class="container">
+        <input formControlName="horarioCierre" type="time" placeholder=" " class="form__input"
+               [ngClass]="{'ng-invalid ng-touched': f.get('horarioCierre')?.invalid && f.get('horarioCierre')?.touched}" />
+        <label>Horario de cierre</label>
+      </div>
+      <div class="error-text" *ngIf="f.get('horarioCierre')?.invalid && f.get('horarioCierre')?.touched">Campo obligatorio</div>
+
+      <div class="container">
+        <input formControlName="correo" type="email" placeholder=" " class="form__input"
+               [ngClass]="{'ng-invalid ng-touched': f.get('correo')?.invalid && f.get('correo')?.touched}" />
+        <label>Correo electrónico (&#64;alumno.ipn.mx o &#64;gmail.com)</label>
+      </div>
+      <div class="error-text" *ngIf="f.get('correo')?.invalid && f.get('correo')?.touched">
+        <div *ngIf="f.get('correo')?.errors?.['required']">Campo obligatorio</div>
+        <div *ngIf="f.get('correo')?.errors?.['email']">Ingresa un correo válido</div>
+      </div>
+
+      <div class="container">
+        <input formControlName="contrasena" type="password" placeholder=" " class="form__input"
+               [ngClass]="{'ng-invalid ng-touched': f.get('contrasena')?.invalid && f.get('contrasena')?.touched}" />
+        <label>Contraseña (mínimo 6 caracteres)</label>
+      </div>
+      <div class="error-text" *ngIf="f.get('contrasena')?.invalid && f.get('contrasena')?.touched">
+        <div *ngIf="f.get('contrasena')?.errors?.['required']">Campo obligatorio</div>
+        <div *ngIf="f.get('contrasena')?.errors?.['minlength']">Mínimo 6 caracteres</div>
+      </div>
+
+      <div class="container">
+        <input type="file" id="imagen" (change)="onFileSelected($event)" accept="image/*" class="form__input">
+        <label for="imagen">Imagen de la cafetería</label>
+      </div>
+
+      <!-- Mensaje de error general -->
+      <div *ngIf="errorMessage" class="error-message">
+        {{errorMessage}}
+      </div>
     </div>
 
     <!-- Formulario de Comprador -->
