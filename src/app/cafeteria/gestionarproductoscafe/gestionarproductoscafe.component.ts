@@ -119,7 +119,7 @@ export class GestionarproductoscafeComponent implements OnInit {
   const formData = new FormData();
   formData.append('nombreProducto', this.productoForm.value.nombre);
   formData.append('precio', this.productoForm.value.precio.toString());
-  formData.append('precioPuntos', '0');
+  formData.append('precioPuntos', this.productoForm.value.precioPuntos);
   formData.append('stock', this.productoForm.value.stock.toString());
   formData.append('idCafeteria', this.idCafeteria.toString());
 
