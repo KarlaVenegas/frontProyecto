@@ -1,59 +1,59 @@
 <div class="container mt-4">
-  <h2>¡Hola, {{nombreCafeteria}}!</h2>
-
-  <div class="row mt-5">
-    <!-- Tarjeta 1 -->
-    <div class="col-md-6 mb-4">
-      <div class="card-link" routerLink="/cafeteria/gestProductos">
-        <div class="card-custom">
-          <img src="/img/gestionar.png" alt="Gestionar productos" class="icon-img" />
-          <div>
-            <h5 class="fw-bold">Gestionar productos</h5>
-            <p>Agrega o edita tu menú.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tarjeta 2 -->
-    <div class="col-md-6 mb-4">
-      <div class="card-link" routerLink="/cafeteria/verPedidos">
-        <div class="card-custom">
-          <img src="/img/visualizar.png" alt="Visualizar pedidos" class="icon-img" />
-          <div>
-            <h5 class="fw-bold">Visualizar pedidos</h5>
-            <p>Consulta las órdenes recibidas.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tarjeta 3 -->
-    <div class="col-md-6 mb-4">
-      <div class="card-link" routerLink="/cafeteria/verResenia">
-        <div class="card-custom">
-          <img src="/img/resena.png" alt="Visualizar reseñas" class="icon-img" />
-          <div>
-            <h5 class="fw-bold">Visualizar reseñas</h5>
-            <p>Lee opiniones y calificaciones.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tarjeta 4 -->
-    <div class="col-md-6 mb-4">
-      <div class="card-link" routerLink="/cafeteria/miCuentaCafe">
-        <div class="card-custom">
-          <img src="/img/cuenta.png" alt="Mi cuenta" class="icon-img" />
-          <div>
-            <h5 class="fw-bold">Mi cuenta</h5>
-            <p>Actualiza tus datos, horarios y contraseña.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>¡Hola, {{nombreCafeteria}}!</h2>
   </div>
 
-</div>
+  <div class="row mt-5">
+    <!-- Gestión de Productos -->
+    <div class="col-md-6 mb-4">
+      <a routerLink="/cafeteria/gestProductos" class="card-link">
+        <div class="card-custom">
+          <img src="/img/gestionar.png" alt="Gestión de productos" class="icon-img">
+          <div>
+            <h5 class="fw-bold">Gestión de productos</h5>
+            <p>Administra tu menú y productos</p>
+          </div>
+        </div>
+      </a>
+    </div>
 
+    <!-- Visualizar Pedidos -->
+    <div class="col-md-6 mb-4">
+      <a routerLink="/cafeteria/verPedidos" class="card-link">
+        <div class="card-custom">
+          <img src="/img/visualizar.png" alt="Pedidos" class="icon-img">
+          <div>
+            <h5 class="fw-bold">Pedidos</h5>
+            <p>Revisa y gestiona los pedidos</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Reseñas -->
+    <div class="col-md-6 mb-4">
+      <a routerLink="/cafeteria/verResenia" class="card-link">
+        <div class="card-custom">
+          <img src="/img/resena.png" alt="Reseñas" class="icon-img">
+          <div>
+            <h5 class="fw-bold">Reseñas</h5>
+            <p>Consulta las opiniones de clientes</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Mi Cuenta -->
+    <div class="col-md-6 mb-4">
+      <a routerLink="/cafeteria/miCuentaCafe" class="card-link">
+        <div class="card-custom">
+          <img src="/img/cuenta.png" alt="Mi cuenta" class="icon-img">
+          <div>
+            <h5 class="fw-bold">Mi cuenta</h5>
+            <p>Administra tu información</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

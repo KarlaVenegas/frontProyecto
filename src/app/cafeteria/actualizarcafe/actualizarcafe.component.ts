@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2';
@@ -10,10 +10,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-actualizarcafe',
   standalone: true,
   templateUrl: './actualizarcafe.component.html',
-  imports: [
-    CommonModule,
-    ReactiveFormsModule
-  ],
+  imports: [CommonModule, ReactiveFormsModule],
   styleUrls: ['./actualizarcafe.component.css']
 })
 export class ActualizarcafeComponent implements OnInit {
@@ -26,8 +23,7 @@ export class ActualizarcafeComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private location: Location,
-    private route: ActivatedRoute
+    private location: Location
   ) {
     this.form = this.fb.group({
       horaApertura: ['', Validators.required],
@@ -38,20 +34,22 @@ export class ActualizarcafeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const perfilStr = localStorage.getItem('perfil');
-    if (perfilStr) {
-      try {
-        const perfil = JSON.parse(perfilStr);
-        this.idCafeteria = perfil.idCafeteria || 0;
-        this.nombreCafeteria = perfil.nombre || 'Cafetería';
-        this.ubicacion = perfil.ubicacion || '';
+    const perfil = this.obtenerPerfilLocalStorage();
+    if (perfil) {
+      this.idCafeteria = perfil.idCafeteria;
+      this.nombreCafeteria = perfil.nombre;
+      this.ubicacion = perfil.ubicacion;
+      this.cargarDatosCafeteria();
+    }
+  }
 
-        if (this.idCafeteria) {
-          this.cargarDatosCafeteria();
-        }
-      } catch (e) {
-        console.error('Error parsing perfil from localStorage', e);
-      }
+  private obtenerPerfilLocalStorage(): any {
+    try {
+      const perfilStr = localStorage.getItem('perfil');
+      return perfilStr ? JSON.parse(perfilStr) : null;
+    } catch (e) {
+      console.error('Error al parsear perfil', e);
+      return null;
     }
   }
 
@@ -59,16 +57,21 @@ export class ActualizarcafeComponent implements OnInit {
     this.authService.getCafeteriaById(this.idCafeteria).subscribe({
       next: (cafeteria) => {
         this.form.patchValue({
-          horaApertura: cafeteria.hora_inicio || '',
-          horaCierre: cafeteria.hora_fin || '',
-          correo: cafeteria.correo || ''
+          horaApertura: this.formatTimeForInput(cafeteria.hora_inicio),
+          horaCierre: this.formatTimeForInput(cafeteria.hora_fin),
+          correo: cafeteria.correo
         });
       },
       error: (err) => {
-        console.error('Error al cargar datos:', err);
-        Swal.fire('Error', 'No se pudieron cargar los datos de la cafetería', 'error');
+        console.error('Error:', err);
+        Swal.fire('Error', 'No se pudieron cargar los datos', 'error');
       }
     });
+  }
+
+  private formatTimeForInput(timeString: string): string {
+    if (!timeString) return '';
+    return timeString.substring(0, 5);
   }
 
   goBack(): void {
@@ -84,6 +87,8 @@ export class ActualizarcafeComponent implements OnInit {
       });
 
       const datosActualizados = {
+        nombre: this.nombreCafeteria,
+        ubicacion: this.ubicacion,
         horaInicio: this.form.value.horaApertura,
         horaFin: this.form.value.horaCierre,
         correo: this.form.value.correo,
@@ -95,34 +100,46 @@ export class ActualizarcafeComponent implements OnInit {
           this.actualizarPerfilLocalStorage(response);
           Swal.fire({
             icon: 'success',
-            title: 'Datos actualizados',
+            title: '¡Datos actualizados!',
             timer: 2000
+          }).then(() => {
+            this.router.navigate(['/cafeteria/miCuentaCafe']);
           });
-          this.router.navigate(['/cafeteria/miCuentaCafe']);
         },
         error: (err) => {
-          Swal.fire('Error', 'No se pudieron actualizar los datos', 'error');
-          console.error(err);
+          console.error('Error completo:', err);
+          let errorMessage = 'Error al actualizar los datos';
+          if (err.error) {
+            errorMessage += `: ${err.error.message || err.error.error || JSON.stringify(err.error)}`;
+          }
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: errorMessage,
+            footer: `Código: ${err.status}`
+          });
         }
       });
     } else {
       this.form.markAllAsTouched();
+      Swal.fire('Error', 'Por favor completa todos los campos requeridos', 'error');
     }
   }
 
   private actualizarPerfilLocalStorage(response: any): void {
     try {
-      const perfilStr = localStorage.getItem('perfil');
-      if (perfilStr) {
-        const perfil = JSON.parse(perfilStr);
+      const perfilActual = this.obtenerPerfilLocalStorage();
+      if (perfilActual) {
         const perfilActualizado = {
-          ...perfil,
-          correo: response.correo || perfil.correo
+          ...perfilActual,
+          correo: response.correo || this.form.value.correo,
+          hora_inicio: response.hora_inicio || this.form.value.horaApertura + ':00',
+          hora_fin: response.hora_fin || this.form.value.horaCierre + ':00'
         };
         localStorage.setItem('perfil', JSON.stringify(perfilActualizado));
       }
     } catch (e) {
-      console.error('Error updating localStorage', e);
+      console.error('Error actualizando localStorage:', e);
     }
   }
 }
