@@ -25,15 +25,15 @@ export class ExplorarCafeteriasCompComponent implements OnInit {
     const perfil = JSON.parse(localStorage.getItem('perfil') || '{}');
     this.nombreUsuario = perfil.nombre || 'Usuario';
 
-  this.cafeteriaService.getCafeterias().subscribe(data => {
-    this.cafeterias = data.sort((a, b) => {
-      // Si hora_inicio es string tipo "08:00", conviértelo a número para comparar
-      const horaA = a.hora_inicio;
-      const horaB = b.hora_inicio;
-      return horaA.localeCompare(horaB);
+    this.cafeteriaService.getCafeterias().subscribe(data => {
+      this.cafeterias = data.sort((a, b) => {
+        // Si hora_inicio es string tipo "08:00", conviértelo a número para comparar
+        const horaA = a.hora_inicio;
+        const horaB = b.hora_inicio;
+        return horaA.localeCompare(horaB);
+      });
     });
-  });
-}
+  }
 
   irAlMenu(id: number) {
     this.router.navigate(['/comprador/menuCafe', id]);

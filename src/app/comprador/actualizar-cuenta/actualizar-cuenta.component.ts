@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-actualizar-cuenta',
@@ -12,24 +13,50 @@ import { Location } from '@angular/common';
   styleUrl: './actualizar-cuenta.component.css'
 })
 export class ActualizarCuentaComponent {
-
-  constructor(private router: Router, private location: Location) {}
-
-  goBack(): void {
-      this.location.back();
-  }
-
-
   nuevoCorreo: string = '';
   nuevaClave: string = '';
-  irA(){
+  idComprador: number = 0;
+  comprador: any = {};
+
+  constructor(
+    private router: Router,
+    private location: Location,
+    private authService: AuthService
+  ) {
+    const perfil = JSON.parse(localStorage.getItem('perfil') || '{}');
+    this.nuevoCorreo = perfil.correo || '';
+    this.idComprador = perfil.id_Comprador || 0;
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  irA(): void {
     this.router.navigate(['/comprador/miCuenta']);
   }
 
-  guardar() {
-    console.log('Guardar cambios:', this.nuevoCorreo, this.nuevaClave);
-    this.router.navigate(['/comprador/miCuenta']);
-    // backend
-  }
+  guardar(): void {
+    const perfil = JSON.parse(localStorage.getItem('perfil') || '{}');
 
+    const dataActualizada = {
+      nombre: perfil.nombre,
+      apellidoPaterno: perfil.apellidoPaterno,
+      apellidoMaterno: perfil.apellidoMaterno,
+      correo: this.nuevoCorreo,
+      contrasenia: this.nuevaClave
+    };
+
+    this.authService.actualizarComprador(this.idComprador, dataActualizada).subscribe({
+      next: (response) => {
+        localStorage.setItem('perfil', JSON.stringify(response));
+        alert('Datos actualizados correctamente');
+        this.router.navigate(['/comprador/miCuenta']);
+      },
+      error: (error) => {
+        console.error('Error al actualizar:', error);
+        alert('Ocurrió un error al actualizar los datos');
+      }
+    });
+  }
 }
