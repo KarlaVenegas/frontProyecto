@@ -17,12 +17,15 @@ export class TuCarritoCompComponent {
   productosCarrito: { producto: Producto, cantidad: number }[] = [];
 puntosDisponibles = 0;
 puntosUsados: number = 0;
-idComprador = 1;
+idComprador = 0;
   constructor(private carritoService: CarritoService,
     private pedidoService: PedidoService,
     private puntosService: PuntosService
   ) {
     this.productosCarrito = this.carritoService.getCarrito();
+    // Obtén el id del comprador desde el perfil guardado en localStorage
+    const perfil = JSON.parse(localStorage.getItem('perfil') || '{}');
+    this.idComprador = perfil.id_Comprador || 0;
   }
 
   ngOnInit() {
@@ -31,14 +34,40 @@ idComprador = 1;
     if (qrsComprador.length > 0) {
       this.puntosDisponibles = qrsComprador.reduce((acc, qr) => acc + qr.cantidadPuntos, 0);
     } else {
-      // Si no existe QR, crea uno con 0 puntos
+      // Mostrar loader mientras se crea el QR
+      Swal.fire({
+        title: 'Creando QR de puntos...',
+        text: 'Por favor espera',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      });
+
+      // Si no existe QR, crea uno con 0 puntos y el comprador como objeto
       const nuevoQR = {
         cantidadPuntos: 0,
         idComprador: this.idComprador,
-        caducidad: "2025-12-31" // O la fecha que corresponda
+        caducidad: "2025-12-31"
+        
       };
       this.puntosService.crearQR(nuevoQR).subscribe(() => {
         this.puntosDisponibles = 0;
+        Swal.close();
+      }, () => {
+        Swal.close();
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo crear el QR de puntos.',
+          confirmButtonText: 'Aceptar',
+          customClass: {
+            confirmButton: 'btn-anadir'
+          },
+          buttonsStyling: false,
+          iconColor: '#E74C3C'
+        });
       });
     }
   });
@@ -117,26 +146,26 @@ realizarPedido(): void {
       });
     });
   } else {
-    const puntosAGanar = this.calcularTotalPuntos();
-    this.puntosService.obtenerTodosQR().subscribe(qrs => {
-      let qr = qrs.find(qr => qr.comprador && qr.comprador.id_Comprador === this.idComprador);
-      if (qr) {
-        qr.cantidadPuntos += puntosAGanar;
-        this.puntosService.actualizarQR(qr).subscribe(() => {
-          this.finalizarPedido();
-        });
-      } else {
-        const nuevoQR = {
-          cantidadPuntos: puntosAGanar,
-          id_Comprador: this.idComprador,
-          caducidad: "2025-12-31"
-        };
-        this.puntosService.crearQR(nuevoQR).subscribe(() => {
-          this.finalizarPedido();
-        });
-      }
-    });
-  }
+  const puntosAGanar = this.calcularTotalPuntos();
+  this.puntosService.obtenerTodosQR().subscribe(qrs => {
+    let qr = qrs.find(qr => qr.comprador && qr.comprador.id_Comprador === this.idComprador);
+    if (qr) {
+      qr.cantidadPuntos += puntosAGanar;
+      this.puntosService.actualizarQR(qr).subscribe(() => {
+        this.finalizarPedido();
+      });
+    } else {
+      const nuevoQR = {
+        cantidadPuntos: puntosAGanar,
+        caducidad: "2025-12-31",
+        comprador: { id_Comprador: this.idComprador }
+      };
+      this.puntosService.crearQR(nuevoQR).subscribe(() => {
+        this.finalizarPedido();
+      });
+    }
+  });
+}
 }
 
 finalizarPedido() {

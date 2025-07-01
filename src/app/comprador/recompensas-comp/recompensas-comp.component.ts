@@ -36,7 +36,11 @@ export class RecompensasCompComponent {
   let compradorListo = false;
   let puntosListos = false;
 
-  this.compradorService.obtenerCompradorPorId(1).subscribe(data => {
+  // Obtén el id del comprador desde el perfil guardado en localStorage
+  const perfil = JSON.parse(localStorage.getItem('perfil') || '{}');
+  const idComprador = perfil.id_Comprador;
+
+  this.compradorService.obtenerCompradorPorId(idComprador).subscribe(data => {
     this.comprador = data;
     compradorListo = true;
     if (compradorListo && puntosListos) Swal.close();
@@ -44,7 +48,7 @@ export class RecompensasCompComponent {
 
   this.puntosService.obtenerTodosQR().subscribe(qrs => {
     this.puntosDisponibles = qrs
-      .filter(qr => qr.comprador && qr.comprador.id_Comprador === 1)
+      .filter(qr => qr.comprador && qr.comprador.id_Comprador === idComprador)
       .reduce((acc, qr) => acc + qr.cantidadPuntos, 0);
     puntosListos = true;
     if (compradorListo && puntosListos) Swal.close();

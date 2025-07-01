@@ -31,7 +31,10 @@ export class PedidosCompComponent implements OnInit {
     }
   });
 
-  const idComprador = 1;
+  // Obtén el id del comprador desde el perfil guardado en localStorage
+  const perfil = JSON.parse(localStorage.getItem('perfil') || '{}');
+  const idComprador = perfil.id_Comprador;
+
   this.pedidoService.obtenerPedidosPorComprador(idComprador).subscribe({
     next: (data) => {
       this.pedidos = data.sort((a: any, b: any) =>
@@ -49,7 +52,7 @@ export class PedidosCompComponent implements OnInit {
           );
           pedido.resena = resena || null;
         });
-        Swal.close(); // Cierra el loader cuando ya tienes todo
+        Swal.close();
       });
     },
     error: () => {

@@ -43,14 +43,28 @@ export class LoginComponent {
 
         if (response.tipo === 'cafeteria') {
           this.authService.getCafeteriaById(response.id).subscribe(cafeteria => {
-            console.log('Cafetería obtenida:', cafeteria); // 👈 Agregado
-            localStorage.setItem('perfil', JSON.stringify(cafeteria));
+            console.log('Cafetería obtenida:', cafeteria);
+            // Solo guarda los campos necesarios
+            const perfilMin = {
+              idCafeteria: cafeteria.idCafeteria,
+              nombre: cafeteria.nombre,
+              correo: cafeteria.correo
+              // agrega aquí solo los campos que realmente necesitas
+            };
+            localStorage.setItem('perfil', JSON.stringify(perfilMin));
             this.router.navigate(['/cafeteria/']);
           });
         } else {
           this.authService.getCompradorById(response.id).subscribe(comprador => {
-            console.log('Comprador obtenido:', comprador); // 👈 Agregado
-            localStorage.setItem('perfil', JSON.stringify(comprador));
+            console.log('Comprador obtenido:', comprador);
+            const perfilMin = {
+              id_Comprador: comprador.id_Comprador,
+              nombre: comprador.nombre,
+              apellidoPaterno: comprador.apellidoPaterno,
+              apellidoMaterno: comprador.apellidoMaterno,
+              correo: comprador.correo
+            };
+            localStorage.setItem('perfil', JSON.stringify(perfilMin));
             this.router.navigate(['/comprador/']);
           });
         }

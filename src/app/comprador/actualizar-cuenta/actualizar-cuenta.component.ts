@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-actualizar-cuenta',
@@ -28,6 +29,13 @@ export class ActualizarCuentaComponent {
     this.idComprador = perfil.id_Comprador || 0;
   }
 
+  ngOnInit(): void {
+    const perfil = JSON.parse(localStorage.getItem('perfil') || '{}');
+    this.comprador = perfil;
+    this.nuevoCorreo = perfil.correo || '';
+    this.idComprador = perfil.id_Comprador || 0;
+  }
+
   goBack(): void {
     this.location.back();
   }
@@ -37,26 +45,68 @@ export class ActualizarCuentaComponent {
   }
 
   guardar(): void {
-    const perfil = JSON.parse(localStorage.getItem('perfil') || '{}');
+  const perfil = JSON.parse(localStorage.getItem('perfil') || '{}');
 
-    const dataActualizada = {
-      nombre: perfil.nombre,
-      apellidoPaterno: perfil.apellidoPaterno,
-      apellidoMaterno: perfil.apellidoMaterno,
-      correo: this.nuevoCorreo,
-      contrasenia: this.nuevaClave
-    };
+  const dataActualizada = {
+    nombre: perfil.nombre,
+    apellidoPaterno: perfil.apellidoPaterno,
+    apellidoMaterno: perfil.apellidoMaterno,
+    correo: this.nuevoCorreo,
+    contrasenia: this.nuevaClave
+  };
 
-    this.authService.actualizarComprador(this.idComprador, dataActualizada).subscribe({
-      next: (response) => {
-        localStorage.setItem('perfil', JSON.stringify(response));
-        alert('Datos actualizados correctamente');
-        this.router.navigate(['/comprador/miCuenta']);
-      },
-      error: (error) => {
-        console.error('Error al actualizar:', error);
-        alert('Ocurrió un error al actualizar los datos');
-      }
-    });
-  }
+  // Mostrar loader
+  Swal.fire({
+    title: 'Actualizando datos...',
+    text: 'Por favor espera',
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  });
+
+  this.authService.actualizarComprador(this.idComprador, dataActualizada).subscribe({
+    next: (response) => {
+      const perfilMin = {
+        id_Comprador: response.id_Comprador,
+        nombre: response.nombre,
+        apellidoPaterno: response.apellidoPaterno,
+        apellidoMaterno: response.apellidoMaterno,
+        correo: response.correo
+      };
+      localStorage.setItem('perfil', JSON.stringify(perfilMin));
+      Swal.close();
+      Swal.fire({
+        icon: 'success',
+        title: '¡Datos actualizados!',
+        text: 'Tus datos se actualizaron correctamente.',
+        confirmButtonText: 'Aceptar',
+        customClass: {
+          confirmButton: 'btn-anadir'
+        },
+        buttonsStyling: false,
+        iconColor: '#E6BC50',
+        timer: 2000,
+        timerProgressBar: true
+      });
+      this.router.navigate(['/comprador/miCuenta']);
+    },
+    error: (error) => {
+      Swal.close();
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Ocurrió un error al actualizar los datos',
+        confirmButtonText: 'Aceptar',
+        customClass: {
+          confirmButton: 'btn-anadir'
+        },
+        buttonsStyling: false,
+        iconColor: '#E74C3C'
+      });
+      console.error('Error al actualizar:', error);
+    }
+  });
+}
 }

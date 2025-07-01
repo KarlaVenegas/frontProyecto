@@ -16,6 +16,8 @@ export class PuntosService {
 }
 
 crearQR(qr: any) {
-  return this.http.post(this.apiUrl, qr);
+  return this.http.post('https://backend-1-p4sl.onrender.com/apiQr/qr', qr, {
+    responseType: 'text' // <-- Esto evita el error de parsing
+  });
 }
 }
