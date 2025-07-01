@@ -15,4 +15,8 @@ export class PedidoService {
   obtenerPedidosPorComprador(idComprador: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/comprador/${idComprador}`);
   }
+
+  descargarComprobante(noOrden: number) {
+  return this.http.get(`${this.apiUrl}/${noOrden}/ticket`, { responseType: 'blob' });
+}
 }

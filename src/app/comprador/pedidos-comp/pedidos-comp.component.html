@@ -1,38 +1,31 @@
 <h1>Mis Pedidos</h1>
 <div class="container my-4">
-  <div class="mb-3">
-    <ng-select
-      [items]="['Todos','Esta semana', 'Este Mes']"
-      [(ngModel)]="opcionSeleccionada"
-      [searchable]="false"
-      [clearable]="false"
-      bindLabel=""
-      class="custom-ng-select"
-      placeholder="">
-    </ng-select>
-  </div>
 
   <div class="accordion" id="accordionPedidos">
     <div class="accordion-item" *ngFor="let pedido of pedidos; let i = index">
       <h2 class="accordion-header" [id]="'heading' + i">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-          [attr.data-bs-target]="'#collapse' + i"
-          [attr.aria-controls]="'collapse' + i"
+          [attr.data-bs-target]="'#collapse' + i" [attr.aria-controls]="'collapse' + i"
           [attr.aria-expanded]="i === 0 ? 'true' : 'false'">
-          <div class="d-flex flex-column flex-md-row justify-content-between w-100">
-            <span>Pedido #{{ pedido.idPedido || pedido.id }}</span>
-            <span>{{ pedido.fecha || pedido.fechaPedido }}</span>
-            <span class="cafe">Cafetería: {{ pedido.cafeteria?.nombre || pedido.cafeteria }}</span>
+          <div class="d-flex flex-row justify-content-between w-100 align-items-center">
+            <span class="flex-grow-1 text-start">Pedido #{{ pedido.no_orden }}</span>
+            <span class="flex-grow-1 text-center">
+              <strong>Fecha:</strong>
+              {{ (pedido.fechaCreacion || pedido.fechaPedido) | date:'dd/MM/yyyy' }}
+            </span>
+            <span class="flex-grow-1 text-end cafe">Cafetería: {{ pedido.cafeteria?.nombre || pedido.cafeteria }}</span>
           </div>
         </button>
       </h2>
-      <div [id]="'collapse' + i"
-          class="accordion-collapse collapse"
-          [class.show]="i === 0"
-          [attr.aria-labelledby]="'heading' + i"
-          data-bs-parent="#accordionPedidos">
+      <div [id]="'collapse' + i" class="accordion-collapse collapse" [class.show]="i === 0"
+        [attr.aria-labelledby]="'heading' + i" data-bs-parent="#accordionPedidos">
         <div class="accordion-body">
-          <p class="descripcion"><strong>Ubicación:</strong> {{ pedido.cafeteria?.ubicacion || pedido.ubicacion }}</p>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="descripcion"><strong>Ubicación:</strong> {{ pedido.cafeteria?.ubicacion || pedido.ubicacion }}</span>
+            <button type="button" class="btn-editar ms-2" (click)="descargarComprobante(pedido.no_orden)">
+              Descargar comprobante
+            </button>
+          </div>
           <p class="descripcion"><strong>Productos:</strong></p>
           <ul>
             <li *ngFor="let detalle of pedido.detalles">
@@ -41,8 +34,29 @@
           </ul>
           <p class="descripcion"><strong>Total:</strong> <em> ${{ pedido.pago_final || pedido.total }} MXN</em></p>
           <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-2 flex-wrap">
-            <p class="mb-0">⭐ <strong>Reseña:</strong> {{ pedido.resena || 'Sin reseña' }}</p>
-            <button class="btn-editar">Editar Reseña</button>
+            <p class="mb-0">⭐ <strong>Reseña:</strong>
+              <ng-container *ngIf="pedido.resena; else sinResena">
+                {{ pedido.resena.calificacion }} estrellas - "{{ pedido.resena.comentario }}"
+              </ng-container>
+              <ng-template #sinResena>Sin reseña</ng-template>
+            </p>
+            <ng-container *ngIf="!pedido.resena">
+              <form class="d-flex align-items-center flex-wrap"
+                (ngSubmit)="guardarResena(pedido, calificacionInput.value, comentarioInput.value)">
+                <div class="mb-2 me-2">
+                  <label class="me-1"><strong>Calificación:</strong></label>
+                  <select #calificacionInput required class="form-select form-select-sm w-auto d-inline-block">
+                    <option *ngFor="let n of [1,2,3,4,5]" [value]="n">{{n}}</option>
+                  </select>
+                </div>
+                <div class="mb-2 me-2">
+                  <label class="ms-2 me-1"><strong>Comentario:</strong></label>
+                  <textarea #comentarioInput required rows="2" class="form-control d-inline-block w-auto"
+                    style="vertical-align: middle; min-width: 180px;"></textarea>
+                </div>
+                <button type="submit" class="btn-editar mt-2 ms-2">Enviar Reseña</button>
+              </form>
+            </ng-container>
           </div>
         </div>
       </div>

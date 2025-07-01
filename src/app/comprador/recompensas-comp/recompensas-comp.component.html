@@ -1,12 +1,9 @@
 <h1>Recompensas</h1>
 
 <div class="container">
-  <h2>Escanea el código QR para obtener tus recompensas</h2>
-  <!--AQUI NOMBRE COMPLETO DE LA BD-->
-  <div class="codigo">
-    <p>José Felipe Pérez Morales</p>
-    <img src="img/qrEj.png" alt="Código QR" class="imgQR"/>
-    <p class="puntos">⭐️ Puntos acumulados: 45pts</p> <!--Aqui van los puntos-->
+  <h2>Recompensas de tu cuenta</h2>
+  <div class="codigo text-center">
+    <p>{{ comprador?.nombre }} {{ comprador?.apellidoPaterno }} {{ comprador?.apellidoMaterno }}</p>
+    <p class="puntos">⭐️ Puntos acumulados: {{ puntosDisponibles }} pts</p>
   </div>
-
 </div>

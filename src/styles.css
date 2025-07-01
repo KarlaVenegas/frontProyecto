@@ -7,3 +7,22 @@ Boton seleccionado: #B48B37 */
 body{
   background-color: #eae0dd;
 }
+
+
+
+.btn-anadir {
+  background-color: #E6BC50;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 30px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #000000;
+  transition: background-color 0.3s ease;
+}
+
+
+.swal2-loader {
+  border-color: #E6BC50 !important;      /* color principal */
+  border-top-color: #bfa03e !important;  /* color del borde superior para el efecto */
+}

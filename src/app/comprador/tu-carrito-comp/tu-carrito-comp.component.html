@@ -21,9 +21,33 @@
           <button type="button" (click)="sumarCantidad(i)" [disabled]="item.cantidad >= item.producto.stock">+</button>
         </div>
       </div>
+
+      <!-- NUEVO: Controles para usar puntos -->
+      <div class="d-flex align-items-center gap-2 my-2">
+  <span><strong>Puntos disponibles:</strong> {{ puntosDisponibles }}</span>
+  <button type="button" class="btn btn-sm btn-secondary"
+    (click)="puntosUsados = max(0, puntosUsados - 1)"
+    [disabled]="puntosUsados <= 0 || puntosDisponibles <= 0">-</button>
+  <span><strong>Puntos a usar:</strong> {{ puntosUsados }}</span>
+  <button type="button" class="btn btn-sm btn-secondary"
+    (click)="puntosUsados = min(puntosDisponibles, calcularTotal() - puntosUsados > 0 ? puntosUsados + 1 : puntosUsados)"
+    [disabled]="puntosUsados >= puntosDisponibles || puntosUsados >= calcularTotal() || puntosDisponibles <= 0">+</button>
+  <button type="button" class="btn btn-sm btn-outline-primary"
+    (click)="usarMaximosPuntos()"
+    [disabled]="puntosUsados >= min(puntosDisponibles, calcularTotal()) || puntosDisponibles <= 0">Usar máximo</button>
+</div>
+
       <hr class="linea-separadora">
-      <span class="total">Total: ${{ calcularTotal() | number:'1.2-2' }}</span>
-      <span class="total-puntos">Total de puntos acumulados: {{ calcularTotalPuntos() }}</span>
+
+      <span class="total">
+        Total: ${{ (calcularTotal() - puntosUsados) | number:'1.2-2' }}
+      </span>
+      <span class="total-puntos" *ngIf="puntosUsados === 0">
+        Total de puntos acumulados: {{ calcularTotalPuntos() }}
+      </span>
+      <span class="total-puntos text-danger" *ngIf="puntosUsados > 0">
+        No acumulas puntos por usar puntos.
+      </span>
       <button class="btn-anadir" type="button" (click)="realizarPedido()">Realizar Pedido</button>
     </div>
   </form>
