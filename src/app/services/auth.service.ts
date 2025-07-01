@@ -26,15 +26,15 @@ export class AuthService {
   }
 
   getCafeteriaById(id: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/cafeterias/${id}`);
+    return this.http.get(`https://backend-o9xo.onrender.com/apiCafeteria/cafeterias/${id}`);
   }
 
   actualizarCafeteria(id: number, datos: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/cafeterias/${id}`, datos);
+    return this.http.put(`https://backend-o9xo.onrender.com/apiCafeteria/cafeterias/${id}`, datos);
   }
 
   eliminarCafeteria(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/cafeterias/${id}`);
+    return this.http.delete(`https://backend-o9xo.onrender.com/apiCafeteria/cafeterias/${id}`);
   }
 
   getCompradorById(id: number): Observable<any> {
