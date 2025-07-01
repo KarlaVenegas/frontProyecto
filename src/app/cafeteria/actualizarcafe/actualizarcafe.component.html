@@ -9,8 +9,8 @@
 
 <form [formGroup]="form" (ngSubmit)="guardar()" class="cuenta-container">
 
-  <div class="menu-card"><strong>Nombre de la Cafetería:</strong> Cafetería Mylssa</div>
-  <div class="menu-card space"><strong>Ubicación:</strong> ESCOM IPN, Unidad Profesional Adolfo López Mateos, Av. Juan de Dios Bátiz, Nueva Industrial Vallejo, Gustavo A. Madero, 07320 Ciudad de México, CDMX</div>
+  <div class="menu-card"><strong>Nombre de la Cafetería:</strong> {{nombreCafeteria}}</div>
+  <div class="menu-card space"><strong>Ubicación:</strong> {{ubicacion}}</div>
 
   <div class="container">
     <input formControlName="horaApertura" type="time" id="horaApertura" name="apertura" required placeholder=" " class="form__input"/>
@@ -25,25 +25,19 @@
   <div class="error-msg" *ngIf="form.get('horaCierre')?.invalid && form.get('horaCierre')?.touched">Campo obligatorio</div>
 
   <div class="container">
-    <input formControlName="correo" type="email" id="correo" name= "correo"autocomplete="off" required placeholder=" " class="form__input"/>
-    <label for="correo">Correo electónico</label>
+    <input formControlName="correo" type="email" id="correo" name="correo" autocomplete="off" required placeholder=" " class="form__input"/>
+    <label for="correo">Correo electrónico</label>
   </div>
   <div class="error-msg" *ngIf="form.get('correo')?.invalid && form.get('correo')?.touched">Campo obligatorio</div>
 
   <div class="container">
     <input formControlName="contrasena" type="password" id="contrasena" name="contrasenaModel" autocomplete="off" required placeholder=" " class="form__input"/>
     <label for="contrasena">Contraseña</label>
-
   </div>
   <div class="error-msg" *ngIf="form.get('contrasena')?.invalid && form.get('contrasena')?.touched">Campo obligatorio</div>
 
-
-
-
-  <!-- Botones -->
-  <div class="button-group" style="margin-top: 20px;">
-    <button class="btn-eliminar" (click)="irA()">Cancelar</button>
-    <button class="btn-anadir" (click)="guardar()" [disabled]="form.invalid">Guardar</button>
+  <div class="button-group">
+    <button class="btn-eliminar" type="button" (click)="goBack()">Cancelar</button>
+    <button class="btn-anadir" type="submit" [disabled]="form.invalid">Guardar</button>
   </div>
-
 </form>

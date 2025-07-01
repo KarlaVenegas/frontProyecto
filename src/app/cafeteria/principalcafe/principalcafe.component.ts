@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-principalcafe',
-  imports: [RouterModule],
   templateUrl: './principalcafe.component.html',
-  styleUrl: './principalcafe.component.css'
+  styleUrls: ['./principalcafe.component.css']
 })
-export class PrincipalcafeComponent {
+export class PrincipalcafeComponent implements OnInit {
+  nombreCafeteria: string = '';
 
+  ngOnInit(): void {
+    const perfil = JSON.parse(localStorage.getItem('perfil') || '{}');
+    this.nombreCafeteria = perfil.nombre || 'Cafetería';
+  }
 }

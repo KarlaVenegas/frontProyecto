@@ -1,16 +1,15 @@
+<!-- micuentacafe.component.html -->
 <h1>Mi Cuenta</h1>
 <div class="cuenta-container">
-
-  <div class="menu-card"><strong>Nombre de la Cafetería:</strong> Cafetería Mylssa</div>
-  <div class="menu-card"><strong>Ubicación:</strong> ESCOM IPN, Unidad Profesional Adolfo López Mateos, Av. Juan de Dios Bátiz, Nueva Industrial Vallejo, Gustavo A. Madero, 07320 Ciudad de México, CDMX</div>
-  <div class="menu-card"><strong>Hora de Apertura:</strong> 07:30 am</div>
-  <div class="menu-card"><strong>Hora de Cierre:</strong> 19:30 pm</div>
-  <div class="menu-card"><strong>Correo electrónico:</strong> cafeteria_gestionhotmail.com</div>
+  <div class="menu-card"><strong>Nombre de la Cafetería:</strong> {{ nombre }}</div>
+  <div class="menu-card"><strong>Ubicación:</strong> {{ ubicacion }}</div>
+  <div class="menu-card"><strong>Hora de Apertura:</strong> {{ horaApertura }}</div>
+  <div class="menu-card"><strong>Hora de Cierre:</strong> {{ horaCierre }}</div>
+  <div class="menu-card"><strong>Correo electrónico:</strong> {{ correo }}</div>
   <div class="menu-card"><strong>Contraseña:</strong> ********</div>
 
   <div class="button-group">
-    <button class="btn-eliminar">Eliminar Cuenta</button>
+    <button class="btn-eliminar" (click)="eliminarCuenta()">Eliminar Cuenta</button>
     <button class="btn-anadir" (click)="irActualizar()">Actualizar Datos</button>
-
   </div>
 </div>
