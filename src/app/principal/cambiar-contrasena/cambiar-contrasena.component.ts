@@ -63,7 +63,7 @@ export class CambiarContrasenaComponent implements OnInit {
 
     const email = this.emailForm.value.email;
 
-    this.http.post(`https://backend-1-p4sl.onrender.com/apiComprador/enviar-recuperacion`, { email }, { responseType: 'text' })
+    this.http.post(`https://backend-o9xo.onrender.com/apiComprador/comprador/recuperar`, { email }, { responseType: 'text' })
       .subscribe({
         next: res => {
           this.mensaje = 'Correo de recuperación enviado. Revisa tu bandeja de entrada.';
@@ -82,7 +82,7 @@ export class CambiarContrasenaComponent implements OnInit {
 
     const nuevaContrasena = this.passwordForm.value.password;
 
-    this.http.post(`https://backend-1-p4sl.onrender.com/apiComprador/actualizar-contrasena`, {
+    this.http.post(`https://https://backend-o9xo.onrender.com/apiComprador/actualizar-contrasena`, {
       token: this.token,
       nuevaContrasena
     }, { responseType: 'text' })
