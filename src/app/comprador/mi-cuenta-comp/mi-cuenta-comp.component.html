@@ -1,15 +1,14 @@
 <h1>Mi Cuenta</h1>
 <div class="cuenta-container">
 
-  <div class="menu-card"><strong>Nombre :</strong> Carlos Andres</div>
-  <div class="menu-card"><strong>Apellido Paterno:</strong> Hernandez</div>
-  <div class="menu-card"><strong>Apellido Materno:</strong> Iriarte</div>
-  <div class="menu-card"><strong>Correo Electrónico:</strong> miCorreo.com</div>
+  <div class="menu-card"><strong>Nombre :</strong> {{ nombre }}</div>
+  <div class="menu-card"><strong>Apellido Paterno:</strong> {{ apellidoPaterno }}</div>
+  <div class="menu-card"><strong>Apellido Materno:</strong> {{ apellidoMaterno }}</div>
+  <div class="menu-card"><strong>Correo Electrónico:</strong> {{ correo }}</div>
   <div class="menu-card"><strong>Contraseña:</strong> ********</div>
 
   <div class="button-group">
     <button class="btn-eliminar">Eliminar Cuenta</button>
     <button class="btn-anadir" (click)="irActualizar()">Actualizar Datos</button>
-
   </div>
 </div>

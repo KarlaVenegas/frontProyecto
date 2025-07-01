@@ -4,6 +4,7 @@
   <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
 
     <div class="container">
+
       <input id="correo" type="email" formControlName="correo" placeholder=" " class="form__input"
              [class.ng-invalid]="loginForm.get('correo')?.invalid && loginForm.get('correo')?.touched"
              [class.ng-touched]="loginForm.get('correo')?.touched"/>
@@ -22,8 +23,11 @@
     <div class="error-text" *ngIf="loginForm.get('contrasenia')?.invalid && loginForm.get('contrasenia')?.touched">
       Campo obligatorio
     </div>
-
+    <div class="error-global" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
     <button type="submit" [disabled]="loginForm.invalid">Iniciar sesión</button>
+
   </form>
 
   <div class="login-links">

@@ -118,3 +118,8 @@ input.ng-invalid.ng-touched {
   transform: scale(1.02);
   transition: transform 0.3s ease;
 }
+
+.error-global {
+  color: red;
+  text-align: center;
+}

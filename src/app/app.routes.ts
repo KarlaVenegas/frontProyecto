@@ -7,6 +7,8 @@ import { LoginComponent } from './principal/login/login.component';
 import { CrearCuentaComponent } from './principal/crear-cuenta/crear-cuenta.component';
 import { CambiarContrasenaComponent } from './principal/cambiar-contrasena/cambiar-contrasena.component';
 import { MenuCafeteriasComponent } from './principal/menu-cafeterias/menu-cafeterias.component';
+import { CompradorGuard } from './guards/comprador.guard';
+import { CafeteriaGuard } from './guards/cafeteria.guard';
 
 //Comprador flujo
 import { NavBarCompradorComponent } from './NavBars/nav-bar-comprador/nav-bar-comprador.component';
@@ -31,22 +33,24 @@ import { VerreseniacafeComponent } from './cafeteria/verreseniacafe/verreseniaca
 export const routes: Routes = [
   {
     path: '',
-    component : NavBarPrincipalComponent,
-    children:[
-      { path: '', redirectTo: 'inicio', pathMatch: 'full'},
-      { path: 'inicio', component: InicioComponent},
-      { path: 'expCafeteriasIni', component: ExplorarCafeteriasComponent},
+    component: NavBarPrincipalComponent,
+    children: [
+      { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+      { path: 'inicio', component: InicioComponent },
+      { path: 'expCafeteriasIni', component: ExplorarCafeteriasComponent },
       { path: 'login', component: LoginComponent },
       { path: 'crearCuenta', component: CrearCuentaComponent },
-      { path: 'cambiarContrasena', component: CambiarContrasenaComponent},
-      { path: 'menuCafeIni', component: MenuCafeteriasComponent}
+      { path: 'cambiarContrasena', component: CambiarContrasenaComponent },
+      { path: 'menuCafeIni', component: MenuCafeteriasComponent },
+      { path: 'menuCafeIni/:id', component: MenuCafeteriasComponent }
     ]
   },
   {
-    path:'comprador',
+    path: 'comprador',
     component: NavBarCompradorComponent,
-    children:[
-      { path: '', redirectTo: 'expCafeterias', pathMatch: 'full'},
+    canActivate: [CompradorGuard],  // 🔒 Protección aquí
+    children: [
+      { path: '', redirectTo: 'expCafeterias', pathMatch: 'full' },
       { path: 'expCafeterias', component: ExplorarCafeteriasCompComponent },
       { path: 'pedidos', component: PedidosCompComponent },
       { path: 'recompensas', component: RecompensasCompComponent },
@@ -58,16 +62,17 @@ export const routes: Routes = [
   },
   {
     path: 'cafeteria',
-    component : NavBarCafeteriasComponent,
-    children:[
-      { path: '', redirectTo: 'principalCafe', pathMatch: 'full'},
-      { path: 'principalCafe', component: PrincipalcafeComponent},
-      { path: 'actualizarCafe', component: ActualizarcafeComponent},
-      { path: 'gestProductos', component: GestionarproductoscafeComponent},
-      { path: 'miCuentaCafe', component: MicuentacafeComponent},
-      { path: 'verPedidos', component: VerpedidoscafeComponent},
-      { path: 'verResenia', component: VerreseniacafeComponent},
-      { path: 'agregarProductos', component: AgregarproductoComponent},
+    component: NavBarCafeteriasComponent,
+    canActivate: [CafeteriaGuard],  // 🔒 Protección aquí
+    children: [
+      { path: '', redirectTo: 'principalCafe', pathMatch: 'full' },
+      { path: 'principalCafe', component: PrincipalcafeComponent },
+      { path: 'actualizarCafe', component: ActualizarcafeComponent },
+      { path: 'gestProductos', component: GestionarproductoscafeComponent },
+      { path: 'miCuentaCafe', component: MicuentacafeComponent },
+      { path: 'verPedidos', component: VerpedidoscafeComponent },
+      { path: 'verResenia', component: VerreseniacafeComponent },
+      { path: 'agregarProductos', component: AgregarproductoComponent }
     ]
   }
 ];

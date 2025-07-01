@@ -24,4 +24,22 @@ export class AuthService {
   login(data: LoginRequest): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.apiUrl, data);
   }
+
+  getCafeteriaById(id: number): Observable<any> {
+    return this.http.get<any>(`https://backend-1-p4sl.onrender.com/apiCafeteria/cafeterias/${id}`);
+  }
+
+  getCompradorById(id: number): Observable<any> {
+    return this.http.get<any>(`https://backend-1-p4sl.onrender.com/apiComprador/compradores/${id}`);
+  }
+
+
+  actualizarComprador(id: number, data: any): Observable<any> {
+    return this.http.put(`https://backend-1-p4sl.onrender.com/apiComprador/compradores/${id}`, data);
+  }
+
+  logout(): void {
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('perfil');
+  }
 }

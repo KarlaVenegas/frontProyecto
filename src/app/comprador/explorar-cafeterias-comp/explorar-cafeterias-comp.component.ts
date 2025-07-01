@@ -13,6 +13,7 @@ import { Cafeteria } from '../../models/cafeteria';
 })
 export class ExplorarCafeteriasCompComponent implements OnInit {
   cafeterias: Cafeteria[] = [];
+  nombreUsuario: string = '';
 
   constructor(
     private router: Router,
@@ -20,6 +21,10 @@ export class ExplorarCafeteriasCompComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Obtener nombre del localStorage
+    const perfil = JSON.parse(localStorage.getItem('perfil') || '{}');
+    this.nombreUsuario = perfil.nombre || 'Usuario';
+
   this.cafeteriaService.getCafeterias().subscribe(data => {
     this.cafeterias = data.sort((a, b) => {
       // Si hora_inicio es string tipo "08:00", conviértelo a número para comparar
