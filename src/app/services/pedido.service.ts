@@ -16,6 +16,10 @@ export class PedidoService {
     return this.http.get<any[]>(`${this.apiUrl}/comprador/${idComprador}`);
   }
 
+  obtenerPedidosPorCafeteria(idCafeteria: number): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/cafeteria/${idCafeteria}`);
+}
+
   descargarComprobante(noOrden: number) {
   return this.http.get(`${this.apiUrl}/${noOrden}/ticket`, { responseType: 'blob' });
 }
