@@ -51,7 +51,7 @@ export class RestablecerContrasenaComponent implements OnInit {
     if (this.passwordForm.valid && this.token) {
       const nuevaContrasena = this.passwordForm.get('password')?.value;
 
-      this.http.post('https://backend-o9xo.onrender.com/apiComprador/comprador/restablecer', {
+      this.http.post('http://localhost:8080/apiComprador/comprador/restablecer', {
         token: this.token,
         nuevaContrasena: nuevaContrasena
       }).subscribe({

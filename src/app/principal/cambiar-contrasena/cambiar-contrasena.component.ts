@@ -63,7 +63,7 @@ export class CambiarContrasenaComponent implements OnInit {
 
     const email = this.emailForm.value.email;
 
-    this.http.post(`https://backend-o9xo.onrender.com/apiComprador/enviar-recuperacion`, { email }, { responseType: 'text' })
+    this.http.post(`https://backend-1-p4sl.onrender.com/apiComprador/enviar-recuperacion`, { email }, { responseType: 'text' })
       .subscribe({
         next: res => {
           this.mensaje = 'Correo de recuperación enviado. Revisa tu bandeja de entrada.';
