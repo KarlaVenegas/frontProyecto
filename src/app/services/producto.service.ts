@@ -31,9 +31,6 @@ export class ProductoService {
     return this.http.post(`${this.apiUrl}/${id}`, formData);
   }
 
-
-
-
   // Obtener imagen de un producto (opcional)
   obtenerImagen(id: number): Observable<Blob> {
     return this.http.get(`${this.apiUrl}/${id}/imagen`, { responseType: 'blob' });

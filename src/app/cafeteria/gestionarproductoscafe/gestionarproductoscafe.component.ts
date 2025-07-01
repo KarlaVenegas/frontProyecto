@@ -140,13 +140,17 @@ export class GestionarproductoscafeComponent implements OnInit {
 
 
   eliminarProducto(id: number): void {
+    if (!id) {
+      console.error('ID inválido para eliminación');
+      return;
+    }
+
     if (confirm('¿Estás seguro de eliminar este producto?')) {
       this.productoService.eliminarProducto(id).subscribe({
-        next: () => {
-          this.cargarProductos();
-        },
+        next: () => this.cargarProductos(),
         error: (err) => console.error('Error al eliminar producto:', err)
       });
     }
   }
+
 }
