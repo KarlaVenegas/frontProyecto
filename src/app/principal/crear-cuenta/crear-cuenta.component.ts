@@ -4,6 +4,7 @@ import { CafeteriaService } from '../../services/cafeteria.service';
 import { CompradorService } from '../../services/comprador.service';
 import { Router } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crear-cuenta',
@@ -59,17 +60,27 @@ export class CrearCuentaComponent {
   }
 
   enviar() {
-    if (this.form && this.form.valid) {
-      this.isLoading = true;
-      this.errorMessage = null;
+  if (this.form && this.form.valid) {
+    this.isLoading = true;
+    this.errorMessage = null;
 
-      if (this.tipo === 'cafeteria') {
-        this.registrarCafeteria();
-      } else {
-        this.registrarComprador();
+    Swal.fire({
+      title: 'Registrando...',
+      text: 'Por favor espera',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      didOpen: () => {
+        Swal.showLoading();
       }
+    });
+
+    if (this.tipo === 'cafeteria') {
+      this.registrarCafeteria();
+    } else {
+      this.registrarComprador();
     }
   }
+}
 
   private registrarCafeteria() {
     const formData = new FormData();
@@ -109,26 +120,48 @@ export class CrearCuentaComponent {
   }
 
   private handleSuccess(response: any) {
-    this.isLoading = false;
-    alert('¡Registro exitoso! Serás redirigido al login.');
+  this.isLoading = false;
+  Swal.close();
+  Swal.fire({
+    icon: 'success',
+    title: '¡Registro exitoso!',
+    text: 'Serás redirigido al login.',
+    confirmButtonText: 'Aceptar',
+    customClass: {
+      confirmButton: 'btn-anadir'
+    },
+    buttonsStyling: false,
+    iconColor: '#E6BC50',
+    timer: 2000,
+    timerProgressBar: true
+  }).then(() => {
     this.router.navigate(['/login']);
-  }
+  });
+}
 
   private handleError(err: any) {
-    this.isLoading = false;
-    console.error('Error en el registro:', err);
+  this.isLoading = false;
+  Swal.close();
+  console.error('Error en el registro:', err);
 
-    if (err.status === 201) {
-      this.handleSuccess(err);
-      return;
-    }
-
-    if (err.error?.message) {
-      this.errorMessage = err.error.message;
-    } else if (err.message) {
-      this.errorMessage = err.message;
-    } else {
-      this.errorMessage = 'Error desconocido al registrar';
-    }
+  if (err.error?.message) {
+    this.errorMessage = err.error.message;
+  } else if (err.message) {
+    this.errorMessage = err.message;
+  } else {
+    this.errorMessage = 'Error desconocido al registrar';
   }
+
+  Swal.fire({
+    icon: 'error',
+    title: 'Error',
+    text: String(this.errorMessage), 
+    confirmButtonText: 'Aceptar',
+    customClass: {
+      confirmButton: 'btn-anadir'
+    },
+    buttonsStyling: false,
+    iconColor: '#E74C3C'
+  });
+}
 }

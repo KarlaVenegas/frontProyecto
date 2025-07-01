@@ -37,7 +37,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'inicio', pathMatch: 'full' },
       { path: 'inicio', component: InicioComponent },
-      { path: 'expCafeteriasIni', component: ExplorarCafeteriasComponent },
+      { path: 'explorarCafeterias', component: ExplorarCafeteriasCompComponent },
       { path: 'login', component: LoginComponent },
       { path: 'crearCuenta', component: CrearCuentaComponent },
       { path: 'cambiarContrasena', component: CambiarContrasenaComponent },
