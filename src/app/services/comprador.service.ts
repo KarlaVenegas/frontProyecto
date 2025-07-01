@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CompradorService {
-  private apiUrl = 'https://backend-1-p4sl.onrender.com/apiComprador/compradores';
+  private apiUrl = 'https://backend-o9xo.onrender.com/apiComprador/compradores';
 
   constructor(private http: HttpClient) { }
 
