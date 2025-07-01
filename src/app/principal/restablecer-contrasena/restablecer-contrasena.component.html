@@ -1,0 +1,45 @@
+<div class="menu-header">
+  <h1 class="menu-title">Establecer Nueva Contraseña</h1>
+</div>
+
+<form [formGroup]="passwordForm" (ngSubmit)="onSubmit()" class="contra-container">
+
+  <div class="container">
+    <input id="password"
+           type="password"
+           formControlName="password"
+           placeholder=" "
+           required
+           class="form__input"
+           [ngClass]="{'input-error': passwordForm.get('password')?.invalid && passwordForm.get('password')?.touched}" />
+    <label for="password">Nueva Contraseña</label>
+  </div>
+  <div *ngIf="passwordForm.get('password')?.invalid && passwordForm.get('password')?.touched" class="error-msg">
+    <small *ngIf="passwordForm.get('password')?.errors?.['required']">Campo obligatorio.</small>
+    <small *ngIf="passwordForm.get('password')?.errors?.['minlength']">Mínimo 8 caracteres.</small>
+    <small *ngIf="passwordForm.get('password')?.errors?.['pattern']">Debe tener mayúscula, minúscula, número y símbolo.</small>
+  </div>
+
+  <div class="container">
+    <input id="confirmPassword"
+           type="password"
+           formControlName="confirmPassword"
+           placeholder=" "
+           required
+           class="form__input"
+           [ngClass]="{
+             'input-error': (passwordForm.hasError('passwordsMismatch') && passwordForm.get('confirmPassword')?.touched)
+           }" />
+    <label for="confirmPassword">Confirmar Contraseña</label>
+  </div>
+  <div *ngIf="passwordForm.hasError('passwordsMismatch') && passwordForm.get('confirmPassword')?.touched" class="error-msg">
+    <small>Las contraseñas no coinciden.</small>
+  </div>
+
+  <div class="button-group">
+    <button type="submit" [disabled]="passwordForm.invalid" class="btn-anadir">Cambiar</button>
+  </div>
+
+  <div *ngIf="mensaje" class="success-msg">{{ mensaje }}</div>
+  <div *ngIf="error" class="error-msg">{{ error }}</div>
+</form>

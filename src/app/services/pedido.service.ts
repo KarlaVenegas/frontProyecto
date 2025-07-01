@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PedidoService {
-  private apiUrl = 'https://backend-1-p4sl.onrender.com/apiPedidos/pedido';
+  private apiUrl = 'https://backend-o9xo.onrender.com/apiPedidos/pedido';
 
   constructor(private http: HttpClient) {}
 

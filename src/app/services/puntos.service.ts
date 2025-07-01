@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class PuntosService {
-  private apiUrl = 'https://backend-1-p4sl.onrender.com/apiQr/qr'; // Ajusta la URL a tu backend
+  private apiUrl = 'https://backend-o9xo.onrender.com/apiQr/qr'; // Ajusta la URL a tu backend
 
   constructor(private http: HttpClient) {}
 
@@ -16,7 +16,7 @@ export class PuntosService {
 }
 
 crearQR(qr: any) {
-  return this.http.post('https://backend-1-p4sl.onrender.com/apiQr/qr', qr, {
+  return this.http.post('https://backend-o9xo.onrender.com/apiQr/qr', qr, {
     responseType: 'text' // <-- Esto evita el error de parsing
   });
 }

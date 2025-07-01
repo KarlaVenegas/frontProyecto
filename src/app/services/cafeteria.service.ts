@@ -7,7 +7,7 @@ import { HttpClient, HttpErrorResponse, HttpEvent } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CafeteriaService {
-  private apiUrl = 'https://backend-1-p4sl.onrender.com/apiCafeteria/cafeterias';
+  private apiUrl = 'https://backend-o9xo.onrender.com/apiCafeteria/cafeterias';
 
   constructor(private http: HttpClient) { }
 

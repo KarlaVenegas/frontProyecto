@@ -7,7 +7,7 @@ import { Producto } from '../models/producto';
   providedIn: 'root'
 })
 export class ProductoService {
-  private apiUrl = 'https://backend-1-p4sl.onrender.com/apiMenu/productos';
+  private apiUrl = 'https://backend-o9xo.onrender.com/apiMenu/productos';
 
   constructor(private http: HttpClient) {}
 

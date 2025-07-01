@@ -17,7 +17,7 @@ export interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://backend-1-p4sl.onrender.com/apiAuth/login';
+  private apiUrl = 'https://backend-o9xo.onrender.com/apiAuth/login';
 
   constructor(private http: HttpClient) {}
 
@@ -26,16 +26,16 @@ export class AuthService {
   }
 
   getCafeteriaById(id: number): Observable<any> {
-    return this.http.get<any>(`https://backend-1-p4sl.onrender.com/apiCafeteria/cafeterias/${id}`);
+    return this.http.get<any>(`https://backend-o9xo.onrender.com/apiCafeteria/cafeterias/${id}`);
   }
 
   getCompradorById(id: number): Observable<any> {
-    return this.http.get<any>(`https://backend-1-p4sl.onrender.com/apiComprador/compradores/${id}`);
+    return this.http.get<any>(`https://backend-o9xo.onrender.com/apiComprador/compradores/${id}`);
   }
 
 
   actualizarComprador(id: number, data: any): Observable<any> {
-    return this.http.put(`https://backend-1-p4sl.onrender.com/apiComprador/compradores/${id}`, data);
+    return this.http.put(`https://backend-o9xo.onrender.com/apiComprador/compradores/${id}`, data);
   }
 
   logout(): void {

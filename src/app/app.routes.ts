@@ -6,6 +6,7 @@ import { ExplorarCafeteriasComponent } from './principal/explorar-cafeterias/exp
 import { LoginComponent } from './principal/login/login.component';
 import { CrearCuentaComponent } from './principal/crear-cuenta/crear-cuenta.component';
 import { CambiarContrasenaComponent } from './principal/cambiar-contrasena/cambiar-contrasena.component';
+import { RestablecerContrasenaComponent } from './principal/restablecer-contrasena/restablecer-contrasena.component';
 import { MenuCafeteriasComponent } from './principal/menu-cafeterias/menu-cafeterias.component';
 import { CompradorGuard } from './guards/comprador.guard';
 import { CafeteriaGuard } from './guards/cafeteria.guard';
@@ -41,6 +42,7 @@ export const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'crearCuenta', component: CrearCuentaComponent },
       { path: 'cambiarContrasena', component: CambiarContrasenaComponent },
+      { path: 'restablecer', component: RestablecerContrasenaComponent },
       { path: 'menuCafeIni', component: MenuCafeteriasComponent },
       { path: 'menuCafeIni/:id', component: MenuCafeteriasComponent }
     ]
