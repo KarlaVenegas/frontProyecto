@@ -4,6 +4,7 @@ import { CarritoService } from '../../services/carrito.service';
 import { Producto } from '../../models/producto';
 import { PedidoService } from '../../services/pedido.service';
 import { PuntosService } from '../../services/puntos.service';
+import { ProductoService } from '../../services/producto.service';
 import { forkJoin } from 'rxjs';
 import Swal from 'sweetalert2';
 @Component({
@@ -20,7 +21,8 @@ puntosUsados: number = 0;
 idComprador = 0;
   constructor(private carritoService: CarritoService,
     private pedidoService: PedidoService,
-    private puntosService: PuntosService
+    private puntosService: PuntosService,
+    private productoService: ProductoService
   ) {
     this.productosCarrito = this.carritoService.getCarrito();
     // Obtén el id del comprador desde el perfil guardado en localStorage
@@ -50,7 +52,7 @@ idComprador = 0;
         cantidadPuntos: 0,
         idComprador: this.idComprador,
         caducidad: "2025-12-31"
-        
+
       };
       this.puntosService.crearQR(nuevoQR).subscribe(() => {
         this.puntosDisponibles = 0;
@@ -183,7 +185,21 @@ finalizarPedido() {
 
   this.pedidoService.crearPedido(pedido).subscribe({
     next: (res) => {
-      Swal.close(); // Cierra el de cargando
+      // Actualiza el stock de cada producto
+      this.productosCarrito.forEach(item => {
+      const nuevoStock = item.producto.stock - item.cantidad;
+      const productoActualizado = {
+        id_producto: item.producto.id_producto,
+        nombreProducto: item.producto.nombreProducto,
+        precio: item.producto.precio,
+        stock: nuevoStock,
+        cafeteria: { idCafeteria: item.producto.cafeteria.idCafeteria }
+      };
+
+      this.productoService.actualizarProducto(item.producto.id_producto, productoActualizado).subscribe();
+    });
+
+      Swal.close();
       Swal.fire({
         icon: 'success',
         title: '¡Pedido realizado!',
@@ -207,7 +223,7 @@ finalizarPedido() {
       this.puntosUsados = 0;
     },
     error: (err) => {
-      Swal.close(); // Cierra el de cargando
+      Swal.close();
       Swal.fire({
         icon: 'error',
         title: 'Error',

@@ -59,22 +59,9 @@ export class AuthService {
     return this.http.get<Cafeteria>(`${this.BASE_URL}/apiCafeteria/cafeterias/${id}`);
   }
 
-  actualizarCafeteria(id: number, datos: any): Observable<Cafeteria> {
-    const body = {
-      nombre: datos.nombre,
-      ubicacion: datos.ubicacion,
-      horaInicio: datos.horaInicio.includes(':00') ? datos.horaInicio : datos.horaInicio + ':00',
-      horaFin: datos.horaFin.includes(':00') ? datos.horaFin : datos.horaFin + ':00',
-      correo: datos.correo,
-      contrasenia: datos.contrasenia
-    };
-
-    return this.http.put<Cafeteria>(
-      `${this.BASE_URL}/apiCafeteria/cafeterias/${id}`,
-      body,
-      { headers: this.JSON_HEADERS }
-    );
-  }
+  actualizarCafeteria(id: number, cafeteria: any) {
+  return this.http.put(`${this.BASE_URL}/apiCafeteria/cafeterias/${id}`, cafeteria, { responseType: 'text' });
+}
 
   eliminarCafeteria(id: number): Observable<void> {
     return this.http.delete<void>(`${this.BASE_URL}/apiCafeteria/cafeterias/${id}`);

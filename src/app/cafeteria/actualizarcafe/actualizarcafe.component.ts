@@ -79,52 +79,81 @@ export class ActualizarcafeComponent implements OnInit {
   }
 
   guardar(): void {
-    if (this.form.valid) {
-      Swal.fire({
-        title: 'Actualizando datos...',
-        allowOutsideClick: false,
-        didOpen: () => Swal.showLoading()
-      });
+  if (this.form.valid) {
+    Swal.fire({
+      title: 'Actualizando datos...',
+      text: 'Por favor espera',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      didOpen: () => Swal.showLoading(),
+      customClass: {
+        confirmButton: 'btn-anadir'
+      },
+      buttonsStyling: false,
+      iconColor: '#E6BC50'
+    });
 
-      const datosActualizados = {
-        nombre: this.nombreCafeteria,
-        ubicacion: this.ubicacion,
-        horaInicio: this.form.value.horaApertura,
-        horaFin: this.form.value.horaCierre,
-        correo: this.form.value.correo,
-        contrasenia: this.form.value.contrasena
-      };
+    const datosActualizados = {
+      nombre: this.nombreCafeteria,
+      ubicacion: this.ubicacion,
+      hora_inicio: this.form.value.horaApertura,
+      hora_fin: this.form.value.horaCierre,
+      correo: this.form.value.correo,
+      contrasenia: this.form.value.contrasena
+    };
 
-      this.authService.actualizarCafeteria(this.idCafeteria, datosActualizados).subscribe({
-        next: (response) => {
-          this.actualizarPerfilLocalStorage(response);
-          Swal.fire({
-            icon: 'success',
-            title: '¡Datos actualizados!',
-            timer: 2000
-          }).then(() => {
-            this.router.navigate(['/cafeteria/miCuentaCafe']);
-          });
-        },
-        error: (err) => {
-          console.error('Error completo:', err);
-          let errorMessage = 'Error al actualizar los datos';
-          if (err.error) {
-            errorMessage += `: ${err.error.message || err.error.error || JSON.stringify(err.error)}`;
-          }
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: errorMessage,
-            footer: `Código: ${err.status}`
-          });
+    this.authService.actualizarCafeteria(this.idCafeteria, datosActualizados).subscribe({
+      next: (response) => {
+        this.actualizarPerfilLocalStorage(response);
+        Swal.fire({
+          icon: 'success',
+          title: '¡Datos actualizados!',
+          confirmButtonText: 'Aceptar',
+          customClass: {
+            confirmButton: 'btn-anadir'
+          },
+          buttonsStyling: false,
+          iconColor: '#E6BC50',
+          timer: 2000
+        }).then(() => {
+          this.router.navigate(['/cafeteria/miCuentaCafe']);
+        });
+      },
+      error: (err) => {
+        console.error('Error completo:', err);
+        let errorMessage = 'Error al actualizar los datos';
+        if (err.error) {
+          errorMessage += `: ${err.error.message || err.error.error || JSON.stringify(err.error)}`;
         }
-      });
-    } else {
-      this.form.markAllAsTouched();
-      Swal.fire('Error', 'Por favor completa todos los campos requeridos', 'error');
-    }
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: errorMessage,
+          footer: `Código: ${err.status}`,
+          confirmButtonText: 'Aceptar',
+          customClass: {
+            confirmButton: 'btn-anadir'
+          },
+          buttonsStyling: false,
+          iconColor: '#E6BC50'
+        });
+      }
+    });
+  } else {
+    this.form.markAllAsTouched();
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Por favor completa todos los campos requeridos',
+      confirmButtonText: 'Aceptar',
+      customClass: {
+        confirmButton: 'btn-anadir'
+      },
+      buttonsStyling: false,
+      iconColor: '#E6BC50'
+    });
   }
+}
 
   private actualizarPerfilLocalStorage(response: any): void {
     try {

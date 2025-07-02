@@ -27,9 +27,9 @@ export class ProductoService {
   }
 
   // Actualizar un producto existente por ID usando FormData (incluye imagen)
-  actualizarProducto(id: number, formData: FormData): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${id}`, formData);
-  }
+  actualizarProducto(id: number, producto: any) {
+  return this.http.put(`${this.apiUrl}/${id}`, producto);
+}
 
   // Obtener imagen de un producto (opcional)
   obtenerImagen(id: number): Observable<Blob> {

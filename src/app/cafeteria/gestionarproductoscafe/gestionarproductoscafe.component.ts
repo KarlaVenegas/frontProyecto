@@ -62,6 +62,7 @@ export class GestionarproductoscafeComponent implements OnInit {
   this.productoForm = this.fb.group({
     nombre: ['', Validators.required],
     precio: [0, Validators.required],
+    precioPuntos: [0, Validators.required],
     stock: [0, Validators.required],
     imagen: [null]
   });

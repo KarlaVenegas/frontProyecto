@@ -12,6 +12,7 @@
       <h5>{{ producto.nombreProducto }}</h5>
       <p>Precio: ${{ producto.precio }}</p>
       <p>Stock: {{ producto.stock }}</p>
+      <p>Puntos por unidad: {{ producto.precioPuntos }}</p>
 
       <div class="icon-buttons">
         <button class="icon-btn" (click)="eliminarProducto(producto.id_producto)" title="Eliminar">
