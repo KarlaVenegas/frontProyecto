@@ -38,7 +38,7 @@ idComprador = 0;
     } else {
       // Mostrar loader mientras se crea el QR
       Swal.fire({
-        title: 'Creando QR de puntos...',
+        title: 'Cargando tus puntos...',
         text: 'Por favor espera',
         allowOutsideClick: false,
         allowEscapeKey: false,
